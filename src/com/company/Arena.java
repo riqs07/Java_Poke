@@ -1,0 +1,127 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Arena {
+    private double userHP;
+    private double enemyHP;
+
+    RNG rng = new RNG();
+
+
+    private int turnCounter;
+    boolean currentlyYourTurn = true;
+
+    boolean isFighting = true;
+
+    public Arena(Pokemon user, Pokemon enemy) {
+        boolean canFlee = rng.canFlee(user.scenarioLuck);
+
+
+        final Pokemon[] pokemon = {user, enemy};
+        System.out.println("----- Battle Start ---- Prepare for Combat with " + enemy.name);
+
+        Scanner sc = new Scanner(System.in);
+        while (isFighting) {
+
+        if (currentlyYourTurn){
+            System.out.println("ATK Basic Attack | SATK Special Attack | Pass |  Flee \nCurrent HP: " + (int) user.currentHP + " | Energy: " +  user.currentEnergy +"\nEnemy HP: " + (int) enemy.currentHP + " | Energy: " + enemy.currentEnergy);
+
+            String move = sc.nextLine();
+
+            if (move.equalsIgnoreCase("atk")){
+                user.basicAttack(enemy);
+            }
+            if (move.equalsIgnoreCase("pass") || move.isEmpty()){
+                user.gainEnergy();
+            }
+            if (move.equalsIgnoreCase("flee")){
+                if (!canFlee){
+                    System.out.println("You cannot flee this battle!");
+                    continue;
+                }
+                isFighting = false;
+
+            }
+//            if (move == 2){
+//                user.specialAttack(enemy);
+//            }
+
+
+        }
+
+        if (!currentlyYourTurn){
+            enemy.basicAttack(user);
+        }
+
+
+
+            // determine attack based on move set & energy
+            handleUpdateTurn(pokemon);
+
+        }
+
+
+    }
+
+    public void observePokeHP(Pokemon[] poke) {
+        this.userHP = poke[0].getCurrentHP();
+        this.enemyHP = poke[1].getCurrentHP();
+
+
+        if (userHP == 0 || enemyHP == 0) {
+            System.out.println("battle over");
+            isFighting = false;
+
+            if (userHP > 0){
+                // user win
+
+            }
+
+        }
+
+        if (userHP <= poke[0].getMaxHP() / 2){
+            System.out.println("You are low on hp.. Consider Running away");
+        }
+
+        if (userHP <= poke[0].getMaxHP() / 4){
+            System.out.println("You are extremely low on hp.. Consider Running away");
+        }
+
+//        if (enemyHP <= poke[1].getMaxHP() / 2){
+//            System.out.println("You are low on hp.. Consider Running away");
+//        }
+//
+//        if (enemyHP <= poke[1].getMaxHP() / 4){
+//            System.out.println("They are extremely low on hp.. Consider Capturing");
+//        }
+
+
+
+    }
+
+    public void handleUpdateTurn(Pokemon[] poke) {
+        System.out.println("-------------- Round " + turnCounter + "--------------");
+
+        currentlyYourTurn = !currentlyYourTurn;
+        if (currentlyYourTurn){
+            System.out.println("--Your Move--");
+            poke[0].gainEnergy();
+        }
+
+        if (!currentlyYourTurn){
+            System.out.println("--CPU Move--");
+            poke[1].gainEnergy();
+
+        }
+
+    turnCounter++;
+    observePokeHP(poke);
+
+
+
+    }
+
+
+    ;
+}
