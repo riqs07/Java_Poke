@@ -1,6 +1,6 @@
 package com.company;
 
-public class Arbok extends Pokemon {
+public class Arbok extends Pokemon implements FireType{
     final int HEIGHT_MIN = 120;
     final int HEIGHT_AVG = 138;
     final int HEIGHT_MAX = 150;
@@ -22,6 +22,7 @@ public class Arbok extends Pokemon {
         currentLevel = 1;
         evolveLevel = 4;
         energyGainRate = 1.25;
+        type = PokemonType.POISON;
         this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN, HEIGHT_MAX, this.geneticLuck);
         this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN, WEIGHT_MAX, this.geneticLuck);
         this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight, this.height);
@@ -35,7 +36,7 @@ public class Arbok extends Pokemon {
         currentHP = this.maxHP;
     }
 
-    public Arbok(int geneticLuck, int skillLuck) {
+    public Arbok(int geneticLuck, int skillLuck)  {
     super(geneticLuck,skillLuck);
 
         name = "Arbok";
@@ -47,7 +48,7 @@ public class Arbok extends Pokemon {
         currentLevel = 1;
         evolveLevel = 4;
         energyGainRate = 1.25;
-
+        type = PokemonType.POISON;
         this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN, HEIGHT_MAX, this.geneticLuck);
         this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN, WEIGHT_MAX, this.geneticLuck);
         this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight, this.height);
@@ -59,6 +60,9 @@ public class Arbok extends Pokemon {
         this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
 
         currentHP = this.maxHP;
+
+        String[] currentMoves = {FIRE_SPECIAL_ATTACKS[4],FIRE_SPECIAL_ATTACKS[0]};
+        String[] possibleMoves = FIRE_SPECIAL_ATTACKS;
     }
 
 
@@ -80,4 +84,6 @@ public class Arbok extends Pokemon {
 
 
     }
+
+
 }

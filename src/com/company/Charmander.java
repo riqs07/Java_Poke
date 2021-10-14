@@ -1,6 +1,6 @@
 package com.company;
 
-public class Charmander extends Pokemon{
+public class Charmander extends Pokemon implements FireType{
 
     final private int HEIGHT_MIN = 18;
     final private int HEIGHT_AVG = 24;

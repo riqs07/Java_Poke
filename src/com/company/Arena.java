@@ -13,6 +13,7 @@ public class Arena {
     boolean currentlyYourTurn = true;
 
     boolean isFighting = true;
+    Scanner sc = new Scanner(System.in);
 
     public Arena(Pokemon user, Pokemon enemy) {
         boolean canFlee = rng.canFlee(user.scenarioLuck);
@@ -21,7 +22,6 @@ public class Arena {
         final Pokemon[] pokemon = {user, enemy};
         System.out.println("----- Battle Start ---- Prepare for Combat with " + enemy.name);
 
-        Scanner sc = new Scanner(System.in);
         while (isFighting) {
 
         if (currentlyYourTurn){
@@ -64,6 +64,50 @@ public class Arena {
 
     }
 
+    public Arena(Pokemon user, PokeTeam enemies) {
+
+        Pokemon currentEnemy;
+
+            for (int i = 0; i < enemies.size(); i++) {
+                currentEnemy = enemies.get(i);
+
+                if (currentlyYourTurn) {
+                    System.out.println("ATK Basic Attack | SATK Special Attack | Pass |  Flee \nCurrent HP: " + (int) user.currentHP + " | Energy: " + user.currentEnergy + "\nEnemy HP: " + (int) currentEnemy.currentHP + " | Energy: " + currentEnemy.currentEnergy);
+
+                    String move = sc.nextLine();
+
+                    if (move.equalsIgnoreCase("atk")) {
+                        user.basicAttack(currentEnemy);
+                    }
+                    if (move.equalsIgnoreCase("pass") || move.isEmpty()) {
+                        user.gainEnergy();
+                    }
+                    if (move.equalsIgnoreCase("flee")) {
+//                        if (!canFlee){
+//                            System.out.println("You cannot flee this battle!");
+//                            continue;
+//                        }
+                        isFighting = false;
+
+                    }
+//            if (move == 2){
+//                user.specialAttack(enemy);
+//            }
+
+
+                }
+
+                if (!currentlyYourTurn) {
+                    currentEnemy.basicAttack(user);
+                }
+
+
+                // determine attack based on move set & energy
+//                handleUpdateTurn(pokemon);
+            }
+
+
+    }
     public void observePokeHP(Pokemon[] poke) {
         this.userHP = poke[0].getCurrentHP();
         this.enemyHP = poke[1].getCurrentHP();

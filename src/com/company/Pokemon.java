@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Pokemon {
@@ -34,7 +36,6 @@ public class Pokemon {
     double maxEnergy = 10;
     double energyGainRate;
     PokemonType type;
-
 
     public int skillLuck;
     public int geneticLuck;
@@ -509,10 +510,11 @@ public void getPokeStats(){
 
 
     public static void main(String[] args) {
-        Pokemon.rollPokemon(1);
+
+        PokeTrainer Misty = new PokeTrainer(2);
+        Misty.getTeam();
+
     }
 
-    public void specialAttack(Pokemon enemy) {
 
-    }
 }
