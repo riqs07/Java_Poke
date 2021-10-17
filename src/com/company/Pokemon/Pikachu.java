@@ -1,26 +1,28 @@
-package com.company;
+package com.company.Pokemon;
 
-public class Charmander extends Pokemon implements FireType{
+import com.company.Pokemon.Pokemon;
 
-    final private int HEIGHT_MIN = 18;
-    final private int HEIGHT_AVG = 24;
-    final private int HEIGHT_MAX = 28;
-
-
-    final private int WEIGHT_MIN = 14;
-    final private int WEIGHT_AVG = 19;
-    final private int WEIGHT_MAX = 28;
+public class Pikachu extends Pokemon {
+    final int HEIGHT_MIN = 10;
+    final int HEIGHT_AVG = 14;
+    final int HEIGHT_MAX = 19;
 
 
-    public Charmander(){
-        name = "Charmander";
-        nickName = "Charmander";
+    final int WEIGHT_MIN = 10;
+    final int WEIGHT_AVG = 13;
+    final int WEIGHT_MAX = 19;
+
+
+    public Pikachu(){
+        name = "Pikachu";
+        nickName = "Pikachu";
         pokedexID = 5;
         evolutionID = 6;
-        evolution = "Charmelion";
+        evolution = "Raichu";
+        prevEvolution = "Pichu";
         currentLevel = 1;
         evolveLevel = 4;
-        energyGainRate = 1.25;
+
         this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
         this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
         this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight,this.height);
@@ -40,12 +42,4 @@ public class Charmander extends Pokemon implements FireType{
 
     }
 
-
-
-
-
-    public static void main(String[] args) {
-
-
-    }
 }

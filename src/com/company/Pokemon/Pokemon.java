@@ -1,40 +1,47 @@
-package com.company;
+package com.company.Pokemon;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.company.Move;
+import com.company.Moves;
+import com.company.PokemonTrainers.Blaine;
+import com.company.PokemonTrainers.GymLeader;
+import com.company.PokemonTrainers.GymTrainer;
+import com.company.PokemonTrainers.Misty;
+import com.company.PokemonType;
+
 import java.util.Random;
 
-public class Pokemon {
+public class Pokemon implements Evolution{
     Random rng = new Random();
 
-    String name;
-    String nickName;
-    String prevEvolution = null;
-    String evolution = null;
-    String rarity = "common";
+    public String name;
+    public String nickName;
+    public String prevEvolution = null;
+    public String evolution = null;
+    public PokeDex evo2 = null;
+    public String rarity = "common";
 
 
-    int pokedexID;
-    int height;
-    int weight;
-    double bodyMassIndex;
+    public int pokedexID;
+    public int height;
+    public int weight;
+    public double bodyMassIndex;
 
-    int evolutionID;
+   public  int evolutionID;
 
-    int currentLevel;
+   public  int currentLevel;
     int evolveLevel;
 
-    double maxHP;
-    double currentHP;
-    double XP = 0;
-    double attack;
-    double specialAttack;
-    double defense;
-    double specialDefense;
+    public double maxHP;
+    public double currentHP;
+    public double XP = 0;
+    public double attack;
+    public double specialAttack;
+    public double defense;
+    public double specialDefense;
 
-    double currentEnergy = 1;
-    double maxEnergy = 10;
-    double energyGainRate;
+    public double currentEnergy = 1;
+   public  double maxEnergy = 10;
+   public  double energyGainRate;
     PokemonType type;
 
     public int skillLuck;
@@ -42,8 +49,8 @@ public class Pokemon {
     public int scenarioLuck;
     public int luck;
 
-    boolean isShiny = false;
-    boolean isAlive = true;
+    public boolean isShiny = false;
+   public  boolean isAlive = true;
 
     String[] resistances;
     Moves[] moveSet;
@@ -132,7 +139,7 @@ public class Pokemon {
         }
     }
 
-    public void calculateDamage(Pokemon origin,Pokemon target,Move m){
+    public void calculateDamage(Pokemon origin, Pokemon target, Move m){
         // take in poke consider there special attack / atk
         // take in target consider spc d / defense
         // take in move which has a base atk
@@ -396,7 +403,9 @@ public void getPokeStats(){
     ////////////////////////////////////////////////Observers /////////////////////////////////////////////////////////
     public void observeEvolve(){
         if (currentLevel > evolveLevel){
-            System.out.println("time to evolve");
+            this.evolve();
+            System.out.println("Congrats " + nickName + " has evolved.");
+            this.getPokeStats();
         }
     }
 
@@ -511,10 +520,18 @@ public void getPokeStats(){
 
     public static void main(String[] args) {
 
-        PokeTrainer Misty = new PokeTrainer(2);
-        Misty.getTeam();
+//        pp = new Poke
+
+       GymLeader Blaine = new Blaine();
+        System.out.println(Blaine);
+
 
     }
 
 
+    @Override
+    public Pokemon evolve() {
+        System.out.println("This pokemon does not have an evolution.");
+        return null;
+    }
 }

@@ -1,5 +1,9 @@
 package com.company;
 
+import com.company.Pokemon.Arbok;
+import com.company.Pokemon.Charmander;
+import com.company.Pokemon.Pokemon;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -21,9 +25,8 @@ public class RPG {
     public static int pokeSelect() {
         System.out.println("Please Select your starter. \n 1.Charmander 2.Mudkip 3.Pikachu \n");
         Scanner s = new Scanner(System.in);
-        int select = s.nextInt();
 
-        return select;
+        return s.nextInt();
 //        if (select == 1) {
 ////            System.out.println("Name your Charmander? Type their name or type No.");
 //            Pokemon poke = new Charmander();
@@ -174,9 +177,10 @@ poke.setCurrentHP(poke.maxHP);
             }
             if (res.equalsIgnoreCase("Shop")) {
                 System.out.println("Gold: " + gold);
-                System.out.println("-----------------------\n"
-                        + "What would you like to purchase\n"
-                        + "Rare Candy | Hyper Potion | Regular Potion |");
+                System.out.println("""
+                        -----------------------
+                        What would you like to purchase
+                        Rare Candy | Hyper Potion | Regular Potion |""");
                 System.out.println("This shit dont work yet ");
                 res = sc.nextLine();
             }
@@ -186,7 +190,7 @@ poke.setCurrentHP(poke.maxHP);
                 /// will pick from array of pokemon depending on which travel area you are in
                 //
                 int lootGold = 10;
-                int lootXP = 30;
+                int lootXP = 100;
 
 
 
@@ -276,7 +280,7 @@ poke.setCurrentHP(poke.maxHP);
 //        int pokeSelect = pokeSelect();
 
 
-        game(2, 2);
+        game(2, 1);
     }
 }
 //// not sure if items should be a class with methods that i pass in poke object

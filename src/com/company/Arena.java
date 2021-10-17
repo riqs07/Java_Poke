@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.Pokemon.PokeTeam;
+import com.company.Pokemon.Pokemon;
+
 import java.util.Scanner;
 
 public class Arena {
@@ -167,5 +170,5 @@ public class Arena {
     }
 
 
-    ;
+
 }

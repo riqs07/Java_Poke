@@ -1,26 +1,30 @@
-package com.company;
+package com.company.Pokemon;
 
-public class Pikachu extends Pokemon{
-    final int HEIGHT_MIN = 10;
-    final int HEIGHT_AVG = 14;
-    final int HEIGHT_MAX = 19;
+import com.company.FireType;
+import com.company.Pokemon.Pokemon;
+
+public class Charmander extends Pokemon implements FireType , Evolution {
+
+    final private int HEIGHT_MIN = 18;
+    final private int HEIGHT_AVG = 24;
+    final private int HEIGHT_MAX = 28;
 
 
-    final int WEIGHT_MIN = 10;
-    final int WEIGHT_AVG = 13;
-    final int WEIGHT_MAX = 19;
+    final private int WEIGHT_MIN = 14;
+    final private int WEIGHT_AVG = 19;
+    final private int WEIGHT_MAX = 28;
 
 
-    public Pikachu(){
-        name = "Pikachu";
-        nickName = "Pikachu";
+    public Charmander(){
+        name = "Charmander";
+        nickName = "Charmander";
         pokedexID = 5;
         evolutionID = 6;
-        evolution = "Raichu";
-        prevEvolution = "Pichu";
+        evolution = "Charmelion";
+        evo2 = PokeDex.CHARMELION;
         currentLevel = 1;
         evolveLevel = 4;
-
+        energyGainRate = 1.25;
         this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
         this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
         this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight,this.height);
@@ -35,9 +39,14 @@ public class Pikachu extends Pokemon{
 //        System.out.println("Genes: " + this.geneticLuck +"\n Skills:" + this.skillLuck + "\n Luck Factor:" + this.luck);
 //        System.out.println("Height: " + this.height+ "\n Weight: " + this.weight);
 
-
-
-
     }
+
+
+    @Override
+    public Pokemon evolve() {
+
+        return new Charmelion(this);
+    }
+
 
 }
