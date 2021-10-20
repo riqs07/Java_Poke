@@ -1,8 +1,9 @@
 package com.company;
 
-import com.company.Pokemon.Arbok;
-import com.company.Pokemon.Charmander;
-import com.company.Pokemon.Pokemon;
+import com.company.Game.Arena;
+import com.company.Game.TravelLocation;
+import com.company.Pokemon.*;
+import com.company.PokemonTrainers.UserTrainer;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -21,35 +22,6 @@ public class RPG {
 
     }
 
-
-    public static int pokeSelect() {
-        System.out.println("Please Select your starter. \n 1.Charmander 2.Mudkip 3.Pikachu \n");
-        Scanner s = new Scanner(System.in);
-
-        return s.nextInt();
-//        if (select == 1) {
-////            System.out.println("Name your Charmander? Type their name or type No.");
-//            Pokemon poke = new Charmander();
-////
-////
-////            String res = s.nextLine();
-////        if(res.equalsIgnoreCase("No")){
-////            poke.setNickName("Charmander");
-////            }
-////                poke.setNickName(res);
-//
-//            System.out.print("-----------------------\n"
-//                    + "What do you want to do?\n"
-//                    + "Hunt | Shop | Sleep | Skills |\nStats | LevelUp"
-//                    + " | Inventory |\n"
-//                    + "Choice: ");
-////
-//            System.out.println("Here are your Charmanders stats.. \n");
-//            poke.getPokeStats();
-//        }
-
-
-    }
 
     public static Pokemon determineBattleOpponent(String area,int difficulty) {
         // diffrent rates based on area
@@ -101,13 +73,48 @@ public class RPG {
         return enemy;
     }
 
+    public static Pokemon determineBattleOpponent2(TravelLocation location){
+
+        Random rng = new Random();
+        int roll = rng.nextInt(10);
+        Pokemon enemy = null;
+        if (location == TravelLocation.GRASSLANDS){
+            if (roll > 0) {
+                enemy = new Charmander();
+            }
+
+            if (roll > 5 && roll <= 9) {
+                enemy = new Arbok(50, 50);
+            } else if (roll >= 10) {
+                enemy = new Arbok(70, 70);
+            }
+        } else if (location == TravelLocation.BEACH){
+            if (roll > 0) {
+                enemy = new Starmie();
+            }
+            if (roll > 5 && roll <= 9) {
+                enemy = new Starmie(50, 50);
+            } else if (roll >= 10) {
+                enemy = new Staryu(70, 70);
+            }
+
+        }
+
+
+        return enemy;
+
+    }
+
+//    public static EnemyTrainer determineTrainerOpponent(TravelLocation location){
+//
+//    }
+
     public static void game(int startDiffuclty, int pokeSelect) {
         /// Need to check if integers are good
         // for now we move on
         int gold = 0;
         int gameDiffuclty = startDiffuclty;
         Random rng = new Random();
-
 
         Scanner sc = new Scanner(System.in);
 
@@ -271,6 +278,76 @@ poke.setCurrentHP(poke.maxHP);
             }
         } while (!res.equalsIgnoreCase("quit"));
     }
+    public static void game2(){
+
+        TravelLocation location = TravelLocation.GRASSLANDS;
+        UserTrainer player = new UserTrainer();
+
+
+        player.choseStarter();
+
+
+        Scanner sc = new Scanner(System.in);
+        String res;
+        do {
+            System.out.print("-----------------------\n"
+                    + "What do you want to do?\n"
+                    + "Battle | Gym | Pokemon | Items | Stats | Shop |\nRest | Travel | PokeDex | Help | Settings\n");
+            res = sc.nextLine();
+
+            if (res.equalsIgnoreCase("Items")) {
+                System.out.println("Which Item? 1.Hyper Potion 2.Rare Candy 3. Mega rare Candy 4. Potion 5. PowerBar");
+                int select = sc.nextInt();
+/// still Need a way  to hold Current Items user has for now his is fine
+
+                switch (select) {
+                    case 1 -> player.myTeam.getCurrentPoke().useHyperPotion();
+                    case 2 -> player.myTeam.getCurrentPoke().useRareCandy();
+                    case 3 -> player.myTeam.getCurrentPoke().useMegaRareCandy();
+                    case 4 -> player.myTeam.getCurrentPoke().usePowerBar();
+                }
+
+                }
+
+            if(res.equalsIgnoreCase("rest")){
+                System.out.println("Welcome to the Pokemon Center........");
+                player.myTeam.healAllPokemon();
+            }
+            if (res.equalsIgnoreCase("Stats")) {
+
+                System.out.println("1. Current Pokemon Stats\n2.Team Stats ");
+                res = sc.nextLine();
+                    if (res.equalsIgnoreCase("1")) {
+                        player.myTeam.showCurrentPokemonStats();
+                    } else if (res.equalsIgnoreCase("2")) {
+                        player.myTeam.showAllPokemonStats();
+                }
+
+            }
+            if (res.equalsIgnoreCase("Shop")) {
+                System.out.println("Gold: " + player.gold);
+                System.out.println("""
+                        -----------------------
+                        What would you like to purchase
+                        Rare Candy | Hyper Potion | Regular Potion |""");
+                res = sc.nextLine();
+            }
+
+            if (res.equalsIgnoreCase(("battle"))) {
+
+
+            }
+            if (res.equalsIgnoreCase(("Help"))) {
+
+                System.out.println("How to play?");
+                System.out.println("Do battle with other random POkemon until yourr levels up.");
+                System.out.println("Resting will fully heal your party");
+                System.out.println("Click stats");
+            }
+
+        } while (!res.equalsIgnoreCase("quit"));
+
+    }
 
     public static void main(String[] args) {
 
@@ -280,7 +357,7 @@ poke.setCurrentHP(poke.maxHP);
 //        int pokeSelect = pokeSelect();
 
 
-        game(2, 1);
+game2();
     }
 }
 //// not sure if items should be a class with methods that i pass in poke object

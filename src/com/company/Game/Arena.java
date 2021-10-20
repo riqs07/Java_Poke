@@ -1,7 +1,8 @@
-package com.company;
+package com.company.Game;
 
 import com.company.Pokemon.PokeTeam;
 import com.company.Pokemon.Pokemon;
+import com.company.RNG;
 
 import java.util.Scanner;
 

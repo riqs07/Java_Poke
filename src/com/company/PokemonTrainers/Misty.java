@@ -10,11 +10,12 @@ public class Misty extends GymLeader {
 
     public Misty(){
         name = "Misty";
-        level = 10;
         lootXP = rng.nextInt(500) + 1000;
         type = PokemonType.WATER;
-        trainerType = TrainerType.GYM_LEADER;
         myTeam = new PokeTeam(new int[]{3,3,4});
+        badge = Badge.CASCADE_BADGE;
+
+
     }
 
 

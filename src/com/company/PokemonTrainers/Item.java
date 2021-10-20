@@ -1,4 +1,4 @@
 package com.company.PokemonTrainers;
 
-public class TrainerType {
+public class Item {
 }

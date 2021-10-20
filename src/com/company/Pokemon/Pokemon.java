@@ -9,10 +9,12 @@ import com.company.PokemonTrainers.Misty;
 import com.company.PokemonType;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class Pokemon implements Evolution{
     Random rng = new Random();
 
+    public UUID uuid = UUID.randomUUID();
     public String name;
     public String nickName;
     public String prevEvolution = null;
@@ -187,6 +189,7 @@ public class Pokemon implements Evolution{
 
     ///////////////////////////////////////////Reports ///////////////////////////////////////////////////////////////////////
 public void getPokeStats(){
+    System.out.println(name);
     System.out.println("MaxHP: " + maxHP + " CurrentHP: " +currentHP + "\n Level: " + currentLevel + "XP: " + XP);
     System.out.println("ATK: " + attack + " SpATK: " +specialAttack + "\nDEF: " + defense + " SpDEF: " + specialAttack);
     System.out.println("Genes: " + geneticLuck +" Skills:" + skillLuck);
@@ -194,6 +197,10 @@ public void getPokeStats(){
     System.out.println("Height: " + height+ " Weight: " + weight + "\nBMI " + (int) bodyMassIndex + " Rarity: " + rarity  );
     System.out.println("-----------\n");
 }
+
+    public void showQuickStats() {
+        System.out.println("Name "+ name + " CurrentHP: " +currentHP + "\nLevel: " + currentLevel + " XP: " + XP);
+    }
 
     public void showEnemyStats(){
         System.out.println( "HP: " +currentHP + " Level " + currentLevel + " BMI " +  bodyMassIndex/12 + "\n Rarity " + rarity);
@@ -534,4 +541,6 @@ public void getPokeStats(){
         System.out.println("This pokemon does not have an evolution.");
         return null;
     }
+
+
 }

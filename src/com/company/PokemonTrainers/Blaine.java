@@ -8,11 +8,10 @@ public class Blaine extends GymLeader {
 
     public Blaine(){
         name = "Blaine";
-        level = 10;
         lootXP = rng.nextInt(500) + 1250;
         type = PokemonType.FIRE;
-        trainerType = TrainerType.GYM_LEADER;
         myTeam = new PokeTeam(new int[]{2,1,5});
+        badge = Badge.VOLCANO_BADGE;
     }
 
 
