@@ -1,7 +1,5 @@
 package com.company.Pokemon;
 
-import com.company.PokemonType;
-
 public class Starmie extends Pokemon {
     final private int HEIGHT_MIN = 18;
     final private int HEIGHT_AVG = 24;

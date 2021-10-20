@@ -2,7 +2,6 @@ package com.company.PokemonTrainers;
 
 import com.company.Pokemon.PokeTeam;
 import com.company.Pokemon.Pokemon;
-import com.company.PokemonType;
 
 import java.util.Random;
 

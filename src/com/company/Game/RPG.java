@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Game;
 
 import com.company.Game.Arena;
 import com.company.Game.TravelLocation;

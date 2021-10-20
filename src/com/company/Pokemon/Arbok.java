@@ -1,8 +1,6 @@
 package com.company.Pokemon;
 
 import com.company.FireType;
-import com.company.Pokemon.Pokemon;
-import com.company.PokemonType;
 
 public class Arbok extends Pokemon implements FireType {
     final int HEIGHT_MIN = 120;

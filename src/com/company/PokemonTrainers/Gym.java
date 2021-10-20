@@ -1,13 +1,21 @@
 package com.company.PokemonTrainers;
 
-import com.company.PokemonType;
+import com.company.Game.EncounterArea;
+import com.company.Game.TrainerEncounterArea;
+import com.company.Game.TravelLocation;
+import com.company.Pokemon.PokemonType;
 
-public class Gym {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
-    GymLeader Leader;
+public class Gym extends EncounterArea {
+
+    GymLeader gymLeader;
     PokemonType type;
-    int Size;
-    PokeTrainer[] gymTrainers;
+    Stack<PokeTrainer> gymTrainers  = new Stack<>();
+    Badge badge;
+
 
 
 
@@ -17,18 +25,32 @@ public class Gym {
 
 
     public Gym(PokemonType type,int size){
+        size = size;
+        type = type;
 
+        switch (type){
+
+        case WATER:
+            gymLeader = new Misty();
+            badge = Badge.CASCADE_BADGE;
+
+            break;
+
+            case FIRE:
+                gymLeader = new Blaine();
+                badge = Badge.VOLCANO_BADGE;
+
+
+        }
+        gymTrainers.push(gymLeader);
+        for (int i = 0;i <size - 1;i++){
+            gymTrainers.push(new GymTrainer(type,3));
+        }
     }
 
 
-    /// Depending on the type and size
-    /// Create gym object that contains a list of trainers
-    /// one of them being the gym leader & several gym Trainers
-    /// they area ll underlying PokeTrainers
-    /// gym is aware of trainers W/L
-    //
-
-
-
-    /// Elite 4 can be coded as gym
+    public static void main(String[] args) {
+        EncounterArea g = new TrainerEncounterArea(4);
+        System.out.println(g.toString());
+    }
 }

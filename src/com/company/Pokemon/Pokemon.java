@@ -4,9 +4,6 @@ import com.company.Move;
 import com.company.Moves;
 import com.company.PokemonTrainers.Blaine;
 import com.company.PokemonTrainers.GymLeader;
-import com.company.PokemonTrainers.GymTrainer;
-import com.company.PokemonTrainers.Misty;
-import com.company.PokemonType;
 
 import java.util.Random;
 import java.util.UUID;
@@ -87,6 +84,9 @@ public class Pokemon implements Evolution{
         this.observeRarity();
 
     }
+
+
+
 
     ////////////////////////////////////////////////////Get Set //////////////////////////////////////////////////////////////
     public void setNickName(String nickName) {

@@ -2,8 +2,6 @@ package com.company.Pokemon;
 
 import com.company.PokemonTrainers.GymLeader;
 import com.company.PokemonTrainers.Misty;
-import com.company.PokemonTrainers.PokeTrainer;
-import com.company.PokemonType;
 
 import java.util.ArrayList;
 import java.util.List;

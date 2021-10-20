@@ -1,7 +1,7 @@
 package com.company.PokemonTrainers;
 
 import com.company.Pokemon.PokeTeam;
-import com.company.PokemonType;
+import com.company.Pokemon.PokemonType;
 
 public class GymTrainer extends EnemyTrainer implements GymChatter{
 

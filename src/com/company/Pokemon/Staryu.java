@@ -1,7 +1,5 @@
 package com.company.Pokemon;
 
-import com.company.PokemonType;
-
 public class Staryu extends Pokemon implements Evolution{
 
     final private int HEIGHT_MIN = 18;

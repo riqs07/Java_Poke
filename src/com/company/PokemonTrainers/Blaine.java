@@ -1,7 +1,7 @@
 package com.company.PokemonTrainers;
 
 import com.company.Pokemon.PokeTeam;
-import com.company.PokemonType;
+import com.company.Pokemon.PokemonType;
 
 public class Blaine extends GymLeader {
 
@@ -10,7 +10,7 @@ public class Blaine extends GymLeader {
         name = "Blaine";
         lootXP = rng.nextInt(500) + 1250;
         type = PokemonType.FIRE;
-        myTeam = new PokeTeam(new int[]{2,1,5});
+        myTeam = new PokeTeam(new int[]{2,1,5,5});
         badge = Badge.VOLCANO_BADGE;
     }
 

@@ -1,6 +1,10 @@
 package com.company.PokemonTrainers;
 
-import com.company.PokemonType;
+import com.company.Game.TravelLocation;
+import com.company.Pokemon.PokeTeam;
+import com.company.Pokemon.PokemonType;
+
+import java.util.Random;
 
 public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
     final String[] POSSIBLE_NAMES = {
@@ -16,14 +20,21 @@ public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
     int level;
     TrainerType trainerType;
     PokemonType type;
+    Random rng = new Random();
 
 
+    /// Random Team Max 4 Pokemon
     public EnemyTrainer(){
         this.name = POSSIBLE_NAMES[rng.nextInt(POSSIBLE_NAMES.length)];
+        myTeam = new PokeTeam(rng.nextInt(5));
 
     }
-    public EnemyTrainer(int size){
 
+
+    /// Random Team Max n Pokemon
+    public EnemyTrainer(int size){
+        this.name = POSSIBLE_NAMES[rng.nextInt(POSSIBLE_NAMES.length)];
+        myTeam = new PokeTeam(size);
     }
 
 

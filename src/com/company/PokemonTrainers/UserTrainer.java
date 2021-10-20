@@ -1,6 +1,7 @@
 package com.company.PokemonTrainers;
 
 import com.company.Game.GameCalculators;
+import com.company.Game.TravelLocation;
 import com.company.Pokemon.*;
 
 import java.security.PublicKey;
@@ -10,6 +11,12 @@ public class UserTrainer extends PokeTrainer {
     int score;
     public int gold = 0;
     Badge[] badges;
+
+    public void setLocation(TravelLocation location) {
+        this.location = location;
+    }
+
+    TravelLocation location;
 
 
 
