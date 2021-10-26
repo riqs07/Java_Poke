@@ -1,6 +1,8 @@
 package com.company.Pokemon;
 
-public class Starmie extends Pokemon {
+import com.company.Game.GameCalculators;
+
+public class Starmie extends Pokemon implements FireType{
     final private int HEIGHT_MIN = 18;
     final private int HEIGHT_AVG = 24;
     final private int HEIGHT_MAX = 28;
@@ -10,28 +12,50 @@ public class Starmie extends Pokemon {
     final private int WEIGHT_AVG = 19;
     final private int WEIGHT_MAX = 28;
 
+    final private int ATK_MIN = 19;
+    final private int ATK_MAX = 19;
+
+    final private int SpATK_MIN = 19;
+    final private int SpATK_MAX = 19;
+
+    final private int SpDEF_MIN = 19;
+    final private int SpDEF_MAX = 19;
+
+    final private int HP_MIN= 19;
+    final private int HP_MAX= 19;
+
+
+    final private int DEF_MIN = 19;
+    final private int DEF_MAX = 19;
+
+    final private int SPEED_MIN= 19;
+    final private int SPEED_MAX= 19;
     //Default // Random
+
     public Starmie(){
         name = "Starmie";
         nickName = "Starmie";
         pokedexID = 5;
-        evolutionID = 6;
-        evolution = "Starmie";
-        evo2 = PokeDex.STARMIE;
+        evolution = PokeDex.STARMIE;
         currentLevel = 1;
         evolveLevel = 4;
         energyGainRate = 1.25;
-        type = PokemonType.WATER;
+        attributeType = PokemonType.WATER;
 
-        this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
-        this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
-        this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight,this.height);
-        this.maxHP = Pokemon.calculatePokeHP(this.bodyMassIndex, this.weight, this.geneticLuck);
-        this.attack =Pokemon.calculatePokeAtk(this.bodyMassIndex,this.geneticLuck);
-        this.defense = Pokemon.calculatePokeDEF(this.bodyMassIndex,this.geneticLuck);
+        this.height = GameCalculators.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
+        this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
-        this.specialAttack= Pokemon.calculatePokeSpAtk(this.skillLuck);
-        this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
+
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
         currentHP = this.maxHP;
     }
@@ -45,23 +69,24 @@ public class Starmie extends Pokemon {
         name = "Starmie";
         nickName = "Starmie";
         pokedexID = 5;
-        evolutionID = 6;
         evolution = null;
-        prevEvolution = null;
+        prevEvolution = PokeDex.STARMIE;
         currentLevel = 1;
         evolveLevel = 4;
         energyGainRate = 1.25;
-        type = PokemonType.WATER;
-        this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN, HEIGHT_MAX, this.geneticLuck);
-        this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN, WEIGHT_MAX, this.geneticLuck);
-        this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight, this.height);
-        this.maxHP = Pokemon.calculatePokeHP(this.bodyMassIndex, this.weight, this.geneticLuck);
-        this.attack = Pokemon.calculatePokeAtk(this.bodyMassIndex, this.geneticLuck);
-        this.defense = Pokemon.calculatePokeDEF(this.bodyMassIndex, this.geneticLuck);
+        attributeType = PokemonType.WATER;
+        this.height = GameCalculators.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
+        this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
-        this.specialAttack = Pokemon.calculatePokeSpAtk(this.skillLuck);
-        this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
 
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
         currentHP = this.maxHP;
 
     }
@@ -74,14 +99,12 @@ public class Starmie extends Pokemon {
         name = "Starmie";
         nickName = poke.nickName;
         pokedexID = 5;
-        evolutionID = 6;
         evolution = null;
-        evo2 =null;
         currentLevel = poke.currentLevel;
         evolveLevel = 8;
         energyGainRate = poke.energyGainRate;
 
-        type = PokemonType.WATER;
+        attributeType = PokemonType.WATER;
 
         // STATS will change cuz of evolve need forumlas
         this.height = poke.height;

@@ -4,14 +4,14 @@ import com.company.Game.TravelLocation;
 import com.company.Pokemon.PokeTeam;
 import com.company.Pokemon.PokemonType;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Random;
 
 public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
     final String[] POSSIBLE_NAMES = {
             "Dave","Red","Paulo","Ash","Bobby"
     };
-
-
 
     public enum TrainerType { GYM_TRAINER,GYM_LEADER,NORMAL,RIVAL}
 
@@ -38,7 +38,16 @@ public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
     }
 
 
+    public int getIndexofPokewithMostHP(){
+// Loop thur to find poke with most hp
+        // return index so i can swap to this poke and give enemy some smarts
+        return 2;
+    }
 
+//    figure out item system
+//    figure out battle arena
+//    trabel system
+//    gm leader ai
 
     @Override
     public void greeting() {

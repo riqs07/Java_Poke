@@ -1,6 +1,6 @@
 package com.company.Pokemon;
 
-import com.company.FireType;
+import com.company.Game.GameCalculators;
 
 public class Arbok extends Pokemon implements FireType {
     final int HEIGHT_MIN = 120;
@@ -11,6 +11,30 @@ public class Arbok extends Pokemon implements FireType {
     final int WEIGHT_MIN = 135;
     final int WEIGHT_AVG = 143;
     final int WEIGHT_MAX = 160;
+    final private int ATK_MIN = 19;
+    final private int ATK_MAX = 19;
+
+    final private int SpATK_MIN = 19;
+    final private int SpATK_MAX = 19;
+
+    final private int SpDEF_MIN = 19;
+    final private int SpDEF_MAX = 19;
+
+    final private int HP_MIN= 19;
+    final private int HP_MAX= 19;
+
+
+    final private int DEF_MIN = 19;
+    final private int DEF_MAX = 19;
+
+    final private int SPEED_MIN= 19;
+    final private int SPEED_MAX= 19;
+
+    final private double SpATK_MOD= FireType.SpATKModifier;
+    final private double ATK_MOD= FireType.ATKModifier;
+    final private double SpDEF_MOD= FireType.SpDEFModifier;
+    final private double HP_MOD= FireType.HPModifier;
+    final private double DEF_MOD= FireType.DEFModifier;
 
 
     public Arbok() {
@@ -18,23 +42,25 @@ public class Arbok extends Pokemon implements FireType {
         name = "Arbok";
         nickName = "Arbok";
         pokedexID = 5;
-        evolutionID = 6;
         evolution = null;
-        prevEvolution = "Ekans";
+        prevEvolution = PokeDex.EKANS;
         currentLevel = 1;
-        evolveLevel = 4;
         energyGainRate = 1.25;
-        type = PokemonType.POISON;
-        this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN, HEIGHT_MAX, this.geneticLuck);
-        this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN, WEIGHT_MAX, this.geneticLuck);
-        this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight, this.height);
-        this.maxHP = Pokemon.calculatePokeHP(this.bodyMassIndex, this.weight, this.geneticLuck);
-        this.attack = Pokemon.calculatePokeAtk(this.bodyMassIndex, this.geneticLuck);
-        this.defense = Pokemon.calculatePokeDEF(this.bodyMassIndex, this.geneticLuck);
+        attributeType = PokemonType.POISON;
+        this.height = GameCalculators.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
+        this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
-        this.specialAttack = Pokemon.calculatePokeSpAtk(this.skillLuck);
-        this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
 
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
         currentHP = this.maxHP;
     }
 
@@ -44,22 +70,25 @@ public class Arbok extends Pokemon implements FireType {
         name = "Arbok";
         nickName = "Arbok";
         pokedexID = 5;
-        evolutionID = 6;
         evolution = null;
-        prevEvolution = "Ekans";
+        prevEvolution = PokeDex.EKANS;
         currentLevel = 1;
-        evolveLevel = 4;
         energyGainRate = 1.25;
-        type = PokemonType.POISON;
-        this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN, HEIGHT_MAX, this.geneticLuck);
-        this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN, WEIGHT_MAX, this.geneticLuck);
-        this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight, this.height);
-        this.maxHP = Pokemon.calculatePokeHP(this.bodyMassIndex, this.weight, this.geneticLuck);
-        this.attack = Pokemon.calculatePokeAtk(this.bodyMassIndex, this.geneticLuck);
-        this.defense = Pokemon.calculatePokeDEF(this.bodyMassIndex, this.geneticLuck);
+        attributeType = PokemonType.POISON;
+        this.height = GameCalculators.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
+        this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
-        this.specialAttack = Pokemon.calculatePokeSpAtk(this.skillLuck);
-        this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
+
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
         currentHP = this.maxHP;
 

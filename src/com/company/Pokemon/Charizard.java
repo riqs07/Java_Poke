@@ -1,6 +1,8 @@
 package com.company.Pokemon;
 
-public class Charizard extends Pokemon {
+import com.company.Game.GameCalculators;
+
+public class Charizard extends Pokemon implements FireType{
 
 
     final private int HEIGHT_MIN = 18;
@@ -12,27 +14,48 @@ public class Charizard extends Pokemon {
     final private int WEIGHT_AVG = 19;
     final private int WEIGHT_MAX = 28;
 
+    final private int ATK_MIN = 19;
+    final private int ATK_MAX = 19;
+
+    final private int SpATK_MIN = 19;
+    final private int SpATK_MAX = 19;
+
+    final private int SpDEF_MIN = 19;
+    final private int SpDEF_MAX = 19;
+
+    final private int HP_MIN= 19;
+    final private int HP_MAX= 19;
+
+
+    final private int DEF_MIN = 19;
+    final private int DEF_MAX = 19;
+
+    final private int SPEED_MIN= 19;
+    final private int SPEED_MAX= 19;
 
 
     public Charizard(){
         name = "Charizard";
         nickName = "Charizard";
-        pokedexID = 5;
-        evolutionID = 6;
+        pokedexID = 6;
+        prevEvolution = PokeDex.CHARMELION;
         evolution = null;
-        evo2 = PokeDex.CHARIZARD;
         currentLevel = 8;
         energyGainRate = 1.25;
-        this.height = Pokemon.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
-        this.weight = Pokemon.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
-        this.bodyMassIndex = Pokemon.calculatePokeBMI(this.weight,this.height);
-        this.maxHP = Pokemon.calculatePokeHP(this.bodyMassIndex, this.weight, this.geneticLuck);
-        this.attack =Pokemon.calculatePokeAtk(this.bodyMassIndex,this.geneticLuck);
-        this.defense = Pokemon.calculatePokeDEF(this.bodyMassIndex,this.geneticLuck);
+        this.height = GameCalculators.calculatePokeHeight(HEIGHT_MIN,HEIGHT_MAX,this.geneticLuck);
+        this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
-        this.specialAttack= Pokemon.calculatePokeSpAtk(this.skillLuck);
-        this.specialDefense = Pokemon.calculatePokeSpDef(this.skillLuck);
 
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
+
+        this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
         currentHP = this.maxHP;
     }
 
@@ -42,10 +65,10 @@ public class Charizard extends Pokemon {
     public Charizard(Pokemon poke) {
         name = "Charizard";
         nickName = poke.nickName;
-        pokedexID = 5;
-        evolutionID = 6;
+        pokedexID = 6;
+
         evolution = null;
-        evo2 = null;
+        prevEvolution = PokeDex.CHARMELION;
         currentLevel = poke.currentLevel;
         evolveLevel = 8;
         energyGainRate = poke.energyGainRate;

@@ -1,5 +1,6 @@
 package com.company.Pokemon;
 
+import com.company.Game.GameCalculators;
 import com.company.Move;
 import com.company.Moves;
 import com.company.PokemonTrainers.Blaine;
@@ -14,9 +15,8 @@ public class Pokemon implements Evolution{
     public UUID uuid = UUID.randomUUID();
     public String name;
     public String nickName;
-    public String prevEvolution = null;
-    public String evolution = null;
-    public PokeDex evo2 = null;
+    public PokeDex prevEvolution = null;
+    public PokeDex evolution = null;
     public String rarity = "common";
 
 
@@ -25,7 +25,6 @@ public class Pokemon implements Evolution{
     public int weight;
     public double bodyMassIndex;
 
-   public  int evolutionID;
 
    public  int currentLevel;
     int evolveLevel;
@@ -37,16 +36,17 @@ public class Pokemon implements Evolution{
     public double specialAttack;
     public double defense;
     public double specialDefense;
+    public double speed;
 
-    public double currentEnergy = 1;
-   public  double maxEnergy = 10;
+    public double currentEnergy = 0;
+   public  double maxEnergy;
    public  double energyGainRate;
-    PokemonType type;
+    PokemonType attributeType;
 
     public int skillLuck;
     public int geneticLuck;
     public int scenarioLuck;
-    public int luck;
+    public int luckOVR;
 
     public boolean isShiny = false;
    public  boolean isAlive = true;
@@ -63,9 +63,7 @@ public class Pokemon implements Evolution{
         this.geneticLuck =  rng.nextInt(100);
         this.skillLuck = rng.nextInt(100);
 
-        this.luck = (geneticLuck * skillLuck) / 20;
-        this.scenarioLuck = rng.nextInt(400) + this.luck;
-
+        this.luckOVR = (geneticLuck * skillLuck) / 20;
 
         this.observeRarity();
 
@@ -77,8 +75,8 @@ public class Pokemon implements Evolution{
         this.geneticLuck =  geneticLuck;
         this.skillLuck = skillLuck;
 
-        this.luck = (geneticLuck * skillLuck) / 20;
-        this.scenarioLuck = rng.nextInt(400) + this.luck;
+        this.luckOVR = (geneticLuck * skillLuck) / 20;
+        this.scenarioLuck = rng.nextInt(400) + this.luckOVR;
 
 
         this.observeRarity();
@@ -193,7 +191,7 @@ public void getPokeStats(){
     System.out.println("MaxHP: " + maxHP + " CurrentHP: " +currentHP + "\n Level: " + currentLevel + "XP: " + XP);
     System.out.println("ATK: " + attack + " SpATK: " +specialAttack + "\nDEF: " + defense + " SpDEF: " + specialAttack);
     System.out.println("Genes: " + geneticLuck +" Skills:" + skillLuck);
-    System.out.println("Scenario: " + scenarioLuck +" Luck OVR:" + luck);
+    System.out.println("Scenario: " + scenarioLuck +" Luck OVR:" + luckOVR);
     System.out.println("Height: " + height+ " Weight: " + weight + "\nBMI " + (int) bodyMassIndex + " Rarity: " + rarity  );
     System.out.println("-----------\n");
 }
@@ -217,186 +215,23 @@ public void getPokeStats(){
 
 
 
-    /////////////////////////////////////////////////Calculators////////////////////////////////////////////////////////
 
-    public static int calculatePokeHeight(int min, int max,int luck){
-
-        // get random number inbetween min and max to determine height
-        double height = Math.floor(Math.random() * (max - min + 1) + min);
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.20;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.35;
-        } else if (luck >=85 && luck < 95){
-            factor = 1.5;
-
-        }else  if (luck >=95){
-            factor = 1.7;
-        }
-
-//        System.out.println("Base :" + height + "\n Factor: " + factor + "\n Luck: "+ luck+"\n Final:" + (height * factor));
-        return (int) height;
-
-    }
-
-    public static int calculatePokeWeight(int min, int max,int luck){
-
-        // get random number inbetween min and max to determine height
-        double weight = Math.floor(Math.random() * (max - min + 1) + min);
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.20;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.35;
-        } else if (luck >=85 && luck < 95){
-            factor = 1.5;
-
-        }else  if (luck >=95){
-            factor = 1.7;
-        }
-
-//        System.out.println("Base :" + weight + "\n Factor: " + factor + "\n Luck: "+ luck+"\n Final:" + (weight * factor));
-        return (int) weight;
-
-    }
-
-    public static double calculatePokeBMI(int weight, int height){
-
-
-//        System.out.println(weight);
-//        System.out.println(height);
-//        double f = (double) (weight / (height*height));
-//        System.out.println(f);
-//        double bmi = (f*703);
-//        System.out.println(bmi);
-
-        double a = (double) weight / height;
-
-        double factor = (a)/height;
-
-
-
-        return factor * 703;
-    }
-
-    public static int calculatePokeHP(double bmi, int weight,int luck){
-        return (int) (bmi* 2) + weight;
-    }
-    public static int calculatePokeAtk(double bmi, int luck){
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.20;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.35;
-        } else if (luck >=85 && luck < 95){
-            factor = 1.5;
-
-        }else  if (luck >=95){
-            factor = 1.7;
-        }
-
-        int atk = luck*2;
-        return atk;
-
-    }
-
-    protected static double calculatePokeDEF(double bmi, int luck) {
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.20;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.35;
-        } else if (luck >=85 && luck < 95){
-            factor = 1.5;
-
-        }else  if (luck >=95){
-            factor = 1.7;
-        }
-
-        int def = (int) (5 + (bmi * factor));
-        return def;
-    }
-
-    protected static double calculatePokeSpAtk(int luck) {
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.50;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.85;
-        } else if (luck >=85 && luck < 95){
-            factor = 2.5;
-
-        }else  if (luck >=95){
-            factor = 2.7;
-        }
-
-        int atk = (int) (5 + ( 20 * factor)) ;
-        return atk;
-    }
-
-    protected static double calculatePokeSpDef(int luck) {
-        double factor = 0;
-        // if luck 1-4 factor is x
-
-        if (luck <= 35 ){
-            factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
-            factor = 1.20;
-
-        } else if(luck >=65 && luck < 85){
-            factor = 1.35;
-        } else if (luck >=85 && luck < 95){
-            factor = 1.5;
-
-        }else  if (luck >=95){
-            factor = 1.7;
-        }
-
-        int def = (int) (5 + ( 20 * factor)) ;
-        return def;
-    }
 
     protected void calulateLevelUpStatChanges() {
         double factor = 0;
         // if luck 1-4 factor is x
 
-        if (luck <= 35 ){
+        if (luckOVR <= 35 ){
             factor =1.0;
-        } else if  (luck > 35 && luck < 65 ){
+        } else if  (luckOVR > 35 && luckOVR < 65 ){
             factor = 1.20;
 
-        } else if(luck >=65 && luck < 85){
+        } else if(luckOVR >=65 && luckOVR < 85){
             factor = 1.35;
-        } else if (luck >=85 && luck < 95){
+        } else if (luckOVR >=85 && luckOVR < 95){
             factor = 1.5;
 
-        }else  if (luck >=95){
+        }else  if (luckOVR >=95){
             factor = 1.7;
         }
 
@@ -430,14 +265,14 @@ public void getPokeStats(){
     }
     public void observeRarity(){
 
-        if (luck > 400){
+        if (luckOVR > 400){
             isShiny = true;
             rarity = "legendary";
-        } else if (luck > 315){
+        } else if (luckOVR > 315){
             rarity = "epic";
-        } else if (luck > 215){
+        } else if (luckOVR > 215){
             rarity = "rare";
-        } else if (luck > 150){
+        } else if (luckOVR > 150){
             rarity = "uncommon";
         }
     }
@@ -468,7 +303,7 @@ public void getPokeStats(){
     //////////////////////////////////////////////// Utility /////////////////////////////////////////////////////////
 
     public static void rollPokemon(int size){
-        Arbok[] pokemon = new Arbok[size];
+        Charmander[] pokemon = new Charmander[size];
 
 
         int legendCount= 0;
@@ -478,7 +313,7 @@ public void getPokeStats(){
         int commonCount= 0;
 
         for (int i = 0;i < pokemon.length; i++){
-            pokemon[i] = new Arbok(100,100);
+            pokemon[i] = new Charmander(100,100);
             pokemon[i].getPokeStats();
 
             if (pokemon[i].rarity.equals("legendary")){
@@ -527,11 +362,7 @@ public void getPokeStats(){
 
     public static void main(String[] args) {
 
-//        pp = new Poke
-
-       GymLeader Blaine = new Blaine();
-        System.out.println(Blaine);
-
+    Pokemon.rollPokemon(10);
 
     }
 

@@ -6,7 +6,15 @@ public enum PokeDex {
     CHARIZARD,
    STARMIE,
     STARYU,
-    ARBOK
+    EKANS,
+    ARBOK,
+    PICHU,
+    PIKACHU,
+    RAICHU,
+    ELECTABUZZ,
+    GYARADOS,
+    LAPRAS,
+    ZAPDOS
 
 
 }

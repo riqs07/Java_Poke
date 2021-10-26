@@ -1,11 +1,8 @@
-package com.company;
+package com.company.Pokemon;
 
 public interface FireType {
-    /** constants **/
-    /** Type name String. */
-    String FIRE_TYPE = new String("Fire");
-    /** Type color String. */
-    String FIRE_COLOR = new String("Orange");
+
+
     /** Array of type fast attack names. */
     String[] FIRE_FAST_ATTACKS = {"Ember", "Fire Fang"};
     /** Array of type special attack names. */
@@ -16,6 +13,14 @@ public interface FireType {
     int[] FIRE_FAST_ATK_POWER = {10, 10};
     /** Array of special attack powers, coincides with name array. */
     int[] FIRE_SPECIAL_BASE_DMG = {100, 40, 30, 25, 40, 55, 80};
+
+    double SpATKModifier = 1.4;
+    double HPModifier = 1.2;
+    double ATKModifier = 1.0;
+    double DEFModifier = 0.9;
+    double SpDEFModifier = 0.8;
+
+
 
 
 }
