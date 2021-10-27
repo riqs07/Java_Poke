@@ -1,6 +1,8 @@
 package com.company.PokemonTrainers;
 
 import com.company.Pokemon.PokeTeam;
+import com.company.Pokemon.Pokemon;
+import com.company.Pokemon.PokemonFactory;
 import com.company.Pokemon.Types.PokemonType;
 
 import java.util.Random;
@@ -34,6 +36,13 @@ public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
         myTeam = new PokeTeam(size);
     }
 
+    // Enemey trainer based on type
+    public EnemyTrainer(PokemonType type,int size){
+        this.name = POSSIBLE_NAMES[rng.nextInt(POSSIBLE_NAMES.length)];
+        this.type = type;
+        myTeam = getTeamByType(size);
+    }
+
 
     public int getIndexofPokewithMostHP(){
 // Loop thur to find poke with most hp
@@ -41,10 +50,17 @@ public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{
         return 2;
     }
 
-//    figure out item system
-//    figure out battle arena
-//    trabel system
-//    gm leader ai
+    public PokeTeam getTeamByType(int size) {
+        PokemonFactory factory = new PokemonFactory();
+        PokeTeam newTeam = new PokeTeam();
+        for (int i = 0;i < size;i++){
+            Pokemon p = factory.createPokemonByType(this.type);
+            newTeam.addPokemon(p);
+
+        }
+
+        return newTeam;
+    }
 
     @Override
     public void greeting() {

@@ -3,7 +3,7 @@ package com.company.PokemonTrainers;
 import com.company.Pokemon.PokeTeam;
 import com.company.Pokemon.Types.PokemonType;
 
-public class Misty extends GymLeader {
+public class Misty extends GymLeader{
 
 
 // call a specifc Poketeam constructor
@@ -33,5 +33,15 @@ public class Misty extends GymLeader {
     @Override
     public void lose() {
         System.out.println("Im the best trainer around..... How did you learn those moves?");
+    }
+
+    @Override
+    public void victory() {
+
+    }
+
+    @Override
+    public void battleLogic() {
+
     }
 }

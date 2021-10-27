@@ -30,4 +30,14 @@ public class Blaine extends GymLeader {
     public void lose() {
         System.out.println("Wow... maybe I underestimated you.");
     }
+
+    @Override
+    public void victory() {
+
+    }
+
+    @Override
+    public void battleLogic() {
+
+    }
 }
