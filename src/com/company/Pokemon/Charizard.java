@@ -1,8 +1,9 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
+import com.company.Pokemon.Types.FireType;
 
-public class Charizard extends Pokemon implements FireType{
+public class Charizard extends Pokemon implements FireType {
 
 
     final private int HEIGHT_MIN = 18;
@@ -32,6 +33,7 @@ public class Charizard extends Pokemon implements FireType{
 
     final private int SPEED_MIN= 19;
     final private int SPEED_MAX= 19;
+
 
 
     public Charizard(){
@@ -87,4 +89,6 @@ public class Charizard extends Pokemon implements FireType{
 
         currentHP = this.maxHP;
     }
+
+
 }

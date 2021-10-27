@@ -1,5 +1,6 @@
 package com.company.Pokemon;
 
+import com.company.Pokemon.Types.PokemonType;
 import com.company.PokemonTrainers.GymLeader;
 import com.company.PokemonTrainers.Misty;
 
@@ -43,7 +44,7 @@ public class PokeTeam {
     }
 
     /// Random Team Based on Type
-    public PokeTeam(PokemonType type,int size){
+    public PokeTeam(PokemonType type, int size){
 
         int num;
         Random rng = new Random();
@@ -168,9 +169,9 @@ public PokeTeam(){
 
     public void setCurrentPoke(int index) {
         // Loop thru array for same pokemon
-        for (int i = 0; i < pokemonArrayList.size(); i++){
-            if (currentPoke.uuid == pokemonArrayList.get(i).uuid){
-                pokemonArrayList.get(i).currentHP = currentPoke.currentHP;
+        for (Pokemon pokemon : pokemonArrayList) {
+            if (currentPoke.uuid == pokemon.uuid) {
+                pokemon.currentHP = currentPoke.currentHP;
             }
         }
 
@@ -179,12 +180,14 @@ public PokeTeam(){
         }
     }
 
-    public void getMyTeam(){
+
+    public String getMyTeam(){
         String s = "";
         for (int i = 0; i < pokemonArrayList.size(); i++){
-           s += pokemonArrayList.get(i).name +" HP: " + pokemonArrayList.get(i).currentHP +"\n";
+           s += i+1 + ". " + pokemonArrayList.get(i).name +" HP: " + pokemonArrayList.get(i).currentHP +"\n";
         }
-        System.out.println(s);
+        return s;
+
     }
 
     public void healAllPokemon(){

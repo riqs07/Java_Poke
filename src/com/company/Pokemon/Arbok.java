@@ -1,6 +1,8 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
+import com.company.Pokemon.Types.FireType;
+import com.company.Pokemon.Types.PokemonType;
 
 public class Arbok extends Pokemon implements FireType {
     final int HEIGHT_MIN = 120;
@@ -30,11 +32,6 @@ public class Arbok extends Pokemon implements FireType {
     final private int SPEED_MIN= 19;
     final private int SPEED_MAX= 19;
 
-    final private double SpATK_MOD= FireType.SpATKModifier;
-    final private double ATK_MOD= FireType.ATKModifier;
-    final private double SpDEF_MOD= FireType.SpDEFModifier;
-    final private double HP_MOD= FireType.HPModifier;
-    final private double DEF_MOD= FireType.DEFModifier;
 
 
     public Arbok() {
@@ -92,8 +89,7 @@ public class Arbok extends Pokemon implements FireType {
 
         currentHP = this.maxHP;
 
-        String[] currentMoves = {FIRE_SPECIAL_ATTACKS[4],FIRE_SPECIAL_ATTACKS[0]};
-        String[] possibleMoves = FIRE_SPECIAL_ATTACKS;
+
     }
 
 

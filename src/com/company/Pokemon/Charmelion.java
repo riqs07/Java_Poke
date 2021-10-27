@@ -1,9 +1,9 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
-import com.company.Pokemon.Pokemon;
+import com.company.Pokemon.Types.FireType;
 
-public class Charmelion extends Pokemon implements Evolution , FireType{
+public class Charmelion extends Pokemon implements Evolution, FireType {
     final double HEIGHT_MULTIPLIER = 1.3;
 
 

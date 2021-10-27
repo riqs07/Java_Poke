@@ -1,15 +1,15 @@
 package com.company.Pokemon;
 
-import com.company.Game.GameCalculators;
 import com.company.Move;
 import com.company.Moves;
-import com.company.PokemonTrainers.Blaine;
-import com.company.PokemonTrainers.GymLeader;
+import com.company.Pokemon.Moves.PokeAttacKMove;
+import com.company.Pokemon.Types.PokemonType;
 
+import java.sql.Array;
 import java.util.Random;
 import java.util.UUID;
 
-public class Pokemon implements Evolution{
+public class Pokemon implements Evolution {
     Random rng = new Random();
 
     public UUID uuid = UUID.randomUUID();
@@ -53,8 +53,7 @@ public class Pokemon implements Evolution{
 
     String[] resistances;
     Moves[] moveSet;
-    Moves[] currentMoves;
-
+    PokeAttacKMove[] currentMoves = new PokeAttacKMove[4];
 
     public Pokemon(){
         //As soon as pokemon object is mad This pokemon blueprint function is ran
@@ -197,7 +196,7 @@ public void getPokeStats(){
 }
 
     public void showQuickStats() {
-        System.out.println("Name "+ name + " CurrentHP: " +currentHP + "\nLevel: " + currentLevel + " XP: " + XP);
+        System.out.println( name + "\tHP: " +currentHP + "\nLevel: " + currentLevel + " XP: " + XP);
     }
 
     public void showEnemyStats(){
@@ -362,7 +361,7 @@ public void getPokeStats(){
 
     public static void main(String[] args) {
 
-    Pokemon.rollPokemon(10);
+    Pokemon.rollPokemon(1);
 
     }
 

@@ -17,8 +17,7 @@ public class RPG {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Welcome to Poke-RPG! \n Please Select your Diffuculty. Medium is the Defualt. \n 1.Easy 2.Medium 3.Hard 4.Very Hard  \n");
-        int diffuculty = s.nextInt();
-        return diffuculty;
+        return s.nextInt();
 
     }
 
@@ -280,7 +279,6 @@ poke.setCurrentHP(poke.maxHP);
     }
     public static void game2(){
 
-        TravelLocation location = TravelLocation.GRASSLANDS;
         UserTrainer player = new UserTrainer();
 
 
@@ -292,38 +290,18 @@ poke.setCurrentHP(poke.maxHP);
         do {
             System.out.print("-----------------------\n"
                     + "What do you want to do?\n"
-                    + "Battle | Gym | Pokemon | Items | Stats | Shop |\nRest | Travel | PokeDex | Help | Settings\n");
+                    + "Battle | Gym | Pokemon | Items | Shop |\nRest | Travel | PokeDex | Help | Settings\n");
             res = sc.nextLine();
 
-            if (res.equalsIgnoreCase("Items")) {
-                System.out.println("Which Item? 1.Hyper Potion 2.Rare Candy 3. Mega rare Candy 4. Potion 5. PowerBar");
-                int select = sc.nextInt();
-/// still Need a way  to hold Current Items user has for now his is fine
-
-                switch (select) {
-                    case 1 -> player.myTeam.getCurrentPoke().useHyperPotion();
-                    case 2 -> player.myTeam.getCurrentPoke().useRareCandy();
-                    case 3 -> player.myTeam.getCurrentPoke().useMegaRareCandy();
-                    case 4 -> player.myTeam.getCurrentPoke().usePowerBar();
-                }
-
-                }
 
             if(res.equalsIgnoreCase("rest")){
                 System.out.println("Welcome to the Pokemon Center........");
                 player.myTeam.healAllPokemon();
+            }  if(res.equalsIgnoreCase("travel")){
+              player.travel();
             }
-            if (res.equalsIgnoreCase("Stats")) {
 
-                System.out.println("1. Current Pokemon Stats\n2.Team Stats ");
-                res = sc.nextLine();
-                    if (res.equalsIgnoreCase("1")) {
-                        player.myTeam.showCurrentPokemonStats();
-                    } else if (res.equalsIgnoreCase("2")) {
-                        player.myTeam.showAllPokemonStats();
-                }
 
-            }
             if (res.equalsIgnoreCase("Shop")) {
                 System.out.println("Gold: " + player.gold);
                 System.out.println("""
@@ -331,6 +309,22 @@ poke.setCurrentHP(poke.maxHP);
                         What would you like to purchase
                         Rare Candy | Hyper Potion | Regular Potion |""");
                 res = sc.nextLine();
+                player.inventory.addPotion(1,player.inventory);
+            }
+            if (res.equalsIgnoreCase("items")) {
+                System.out.println("Click on Number to Use.");
+               String items = player.inventory.getItemsString();
+                System.out.println(items);
+            }
+            if (res.equalsIgnoreCase("pokemon")) {
+
+                System.out.println("1. Current Pokemon Stats\n2.Team Stats ");
+                res = sc.nextLine();
+                if (res.equalsIgnoreCase("1")) {
+                    player.myTeam.showCurrentPokemonStats();
+                } else if (res.equalsIgnoreCase("2")) {
+                    player.myTeam.showAllPokemonStats();
+                }
             }
 
             if (res.equalsIgnoreCase(("battle"))) {
@@ -351,10 +345,6 @@ poke.setCurrentHP(poke.maxHP);
 
     public static void main(String[] args) {
 
-//        int diffuclty = startUp();
-////        System.out.println(diffuclty);
-
-//        int pokeSelect = pokeSelect();
 
 
 game2();

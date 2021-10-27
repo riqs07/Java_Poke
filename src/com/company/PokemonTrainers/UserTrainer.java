@@ -9,17 +9,32 @@ import java.util.Scanner;
 
 public class UserTrainer extends PokeTrainer {
     int score;
-    public int gold = 0;
+    public int gold = 100;
     Badge[] badges;
 
     public void setLocation(TravelLocation location) {
         this.location = location;
     }
 
-    TravelLocation location;
+    public TravelLocation location = TravelLocation.GRASSLANDS;
 
 
+    public void travel(){
+        System.out.println("Where would you like to travel too?");
+        System.out.println("Current Location:" + this.location);
+        System.out.println("1.GRASSLANDS,2.CERULEAN_CITY,3.HIGHWAY,4.CINNABAR_VOLCANO,5.BEACH\n");
+        Scanner s = new Scanner(System.in);
 
+        int select = s.nextInt();
+
+        switch (select) {
+            case 1 -> this.setLocation(TravelLocation.GRASSLANDS);
+            case 2 -> this.setLocation(TravelLocation.CERULEAN_CITY);
+            case 3 -> this.setLocation(TravelLocation.CINNABAR_VOLCANO);
+            case 4 -> this.setLocation(TravelLocation.BEACH);
+
+        }
+        System.out.println("Success! You have arrived at " + this.location);    }
 
 
     public void choseStarter(){

@@ -1,8 +1,12 @@
 package com.company.PokemonTrainers;
 
+import com.company.Game.TravelLocation;
+import com.company.Pokemon.Item;
 import com.company.Pokemon.PokeTeam;
 import com.company.Pokemon.Pokemon;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class PokeTrainer  {
@@ -12,7 +16,8 @@ public class PokeTrainer  {
 
 
     Random rng = new Random();
-    Item[] items;
+
+   public  Inventory inventory = new Inventory();
 
 
     // final var vs ENUMS?
@@ -30,6 +35,7 @@ public class PokeTrainer  {
     public void useItem(Item i , Pokemon p){
 
     }
+
 
     public void getTeam(){
 

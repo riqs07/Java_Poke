@@ -1,8 +1,10 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
+import com.company.Pokemon.Types.PokemonType;
+import com.company.Pokemon.Types.WaterType;
 
-public class Starmie extends Pokemon implements FireType{
+public class Starmie extends Pokemon implements WaterType {
     final private int HEIGHT_MIN = 18;
     final private int HEIGHT_AVG = 24;
     final private int HEIGHT_MAX = 28;
@@ -46,12 +48,12 @@ public class Starmie extends Pokemon implements FireType{
         this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
 
-        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
-        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
-        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,WaterType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,WaterType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,WaterType.DEFModifier,this.weight,this.geneticLuck);
 
-        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
-        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,WaterType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,WaterType.SpDEFModifier,this.skillLuck);
 
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
@@ -79,12 +81,12 @@ public class Starmie extends Pokemon implements FireType{
         this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
 
-        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
-        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
-        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,WaterType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,WaterType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,WaterType.DEFModifier,this.weight,this.geneticLuck);
 
-        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
-        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,WaterType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,WaterType.SpDEFModifier,this.skillLuck);
 
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
         currentHP = this.maxHP;

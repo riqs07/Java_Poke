@@ -1,11 +1,8 @@
 package com.company.PokemonTrainers;
 
-import com.company.Game.TravelLocation;
 import com.company.Pokemon.PokeTeam;
-import com.company.Pokemon.PokemonType;
+import com.company.Pokemon.Types.PokemonType;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.Random;
 
 public class EnemyTrainer extends PokeTrainer implements EnemyTrainerChatter{

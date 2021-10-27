@@ -1,9 +1,9 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
-import com.company.Pokemon.Pokemon;
+import com.company.Pokemon.Types.ElectricType;
 
-public class Pikachu extends Pokemon implements FireType {
+public class Pikachu extends Pokemon implements ElectricType {
     final int HEIGHT_MIN = 10;
     final int HEIGHT_AVG = 14;
     final int HEIGHT_MAX = 19;
@@ -49,12 +49,12 @@ public class Pikachu extends Pokemon implements FireType {
         this.weight = GameCalculators.calculatePokeWeight(WEIGHT_MIN,WEIGHT_MAX,this.geneticLuck);
 
 
-        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,FireType.HPModifier,this.weight, this.geneticLuck);
-        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,FireType.ATKModifier,this.weight,this.geneticLuck);
-        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,FireType.DEFModifier,this.weight,this.geneticLuck);
+        this.maxHP = GameCalculators.calculatePokeHP(HP_MIN,HP_MAX,ElectricType.HPModifier,this.weight, this.geneticLuck);
+        this.attack =GameCalculators.calculatePokeAtk(ATK_MIN,ATK_MAX,ElectricType.ATKModifier,this.weight,this.geneticLuck);
+        this.defense = GameCalculators.calculatePokeDEF(DEF_MIN,DEF_MAX,ElectricType.DEFModifier,this.weight,this.geneticLuck);
 
-        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,FireType.SpATKModifier,this.skillLuck);
-        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,FireType.SpDEFModifier,this.skillLuck);
+        this.specialAttack= GameCalculators.calculatePokeSpAtk(SpATK_MIN,SpATK_MAX,ElectricType.SpATKModifier,this.skillLuck);
+        this.specialDefense = GameCalculators.calculatePokeSpDef(SpDEF_MIN,SpDEF_MAX,ElectricType.SpDEFModifier,this.skillLuck);
 
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);

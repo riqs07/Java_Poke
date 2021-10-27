@@ -1,7 +1,7 @@
 package com.company.PokemonTrainers;
 
 import com.company.Pokemon.PokeTeam;
-import com.company.Pokemon.PokemonType;
+import com.company.Pokemon.Types.PokemonType;
 
 public class Blaine extends GymLeader {
 
