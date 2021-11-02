@@ -156,19 +156,10 @@ public class RPG {
 
 
                 switch (select) {
-                    case 1:
-                        poke.useHyperPotion();
-                        break;
-                    case 2:
-                        poke.useRareCandy();
-                        break;
-                    case 3:
-                        poke.useMegaRareCandy();
-                        break;
-                    case 4:
-                        poke.usePowerBar();
-                        break;
-
+                    case 1 -> poke.useHyperPotion();
+                    case 2 -> poke.useRareCandy();
+                    case 3 -> poke.useMegaRareCandy();
+                    case 4 -> poke.usePowerBar();
                 }
 
             }
@@ -209,7 +200,7 @@ poke.setCurrentHP(poke.maxHP);
 //                }
 
 
-                Pokemon enemy = null;
+                Pokemon enemy;
 
 
                 enemy = determineBattleOpponent("cave",gameDiffuclty);
@@ -288,9 +279,12 @@ poke.setCurrentHP(poke.maxHP);
         Scanner sc = new Scanner(System.in);
         String res;
         do {
-            System.out.print("-----------------------\n"
-                    + "What do you want to do?\n"
-                    + "Battle | Gym | Pokemon | Items | Shop |\nRest | Travel | PokeDex | Help | Settings\n");
+            System.out.print("""
+                    -----------------------
+                    What do you want to do?
+                    Battle | Gym | Pokemon | Items | Shop |
+                    Rest | Travel | PokeDex | Help | Settings
+                    """);
             res = sc.nextLine();
 
 
@@ -328,6 +322,7 @@ poke.setCurrentHP(poke.maxHP);
             }
 
             if (res.equalsIgnoreCase(("battle"))) {
+                PokeBattle a = new PokeBattle(player.myTeam.getCurrentPoke(),new Charmander());
 
 
             }

@@ -1,5 +1,7 @@
 package com.company.Game;
 
+import com.company.Pokemon.Charmander;
+
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -207,5 +209,45 @@ public class GameCalculators {
         speed = speed * factor;
         return (int) speed;
     }
+    public static void rollPokemon(int size){
+        Charmander[] pokemon = new Charmander[size];
 
+
+        int legendCount= 0;
+        int epicCount= 0;
+        int rareCount= 0;
+        int uncommonCount= 0;
+        int commonCount= 0;
+
+        for (int i = 0;i < pokemon.length; i++){
+            pokemon[i] = new Charmander(100,100);
+            pokemon[i].getPokeStats();
+
+            if (pokemon[i].rarity.equals("legendary")){
+                legendCount++;
+
+            }
+
+            if (pokemon[i].rarity.equals("epic")){
+                epicCount++;
+            }
+            if (pokemon[i].rarity.equals("rare")){
+                rareCount++;
+            }
+            if (pokemon[i].rarity.equals("uncommon")){
+                uncommonCount++;
+            }
+            if (pokemon[i].rarity.equals("common")){
+                commonCount++;
+            }
+
+
+        }
+        System.out.println("Legendary: " + legendCount
+                +"\nEpic: " + epicCount
+                + "\nRare: " + rareCount
+                + "\n Uncommon: " + uncommonCount
+                + "\n Common: " + commonCount);
+
+    }
 }

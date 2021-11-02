@@ -93,7 +93,15 @@ public class Starmie extends Pokemon implements WaterType {
 
     }
 
+    @Override
+    public void spAtk1(Pokemon target) {
 
+    }
+
+    @Override
+    public void spAtk2(Pokemon target) {
+
+    }
 
 
     //Evolution Constructor

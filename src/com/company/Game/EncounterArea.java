@@ -5,5 +5,9 @@ public class EncounterArea {
         int size;
     }
 
+//    displayInfo();
+//    fill();
+//
+
 
 }

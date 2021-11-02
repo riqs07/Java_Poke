@@ -1,5 +1,6 @@
 package com.company.Pokemon;
 
+import com.company.Game.DamageCalculators;
 import com.company.Move;
 import com.company.Moves;
 import com.company.Pokemon.Moves.PokeAttacKMove;
@@ -9,7 +10,7 @@ import java.sql.Array;
 import java.util.Random;
 import java.util.UUID;
 
-public class Pokemon implements Evolution {
+public abstract class Pokemon implements Evolution {
     Random rng = new Random();
 
     public UUID uuid = UUID.randomUUID();
@@ -52,8 +53,6 @@ public class Pokemon implements Evolution {
    public  boolean isAlive = true;
 
     String[] resistances;
-    Moves[] moveSet;
-    PokeAttacKMove[] currentMoves = new PokeAttacKMove[4];
 
     public Pokemon(){
         //As soon as pokemon object is mad This pokemon blueprint function is ran
@@ -138,15 +137,6 @@ public class Pokemon implements Evolution {
         }
     }
 
-    public void calculateDamage(Pokemon origin, Pokemon target, Move m){
-        // take in poke consider there special attack / atk
-        // take in target consider spc d / defense
-        // take in move which has a base atk
-        // move dmg is first increased based on origin stats
-        // then dmg is modified based on target res
-        // get and return final damage calc
-
-    }
     public void levelUP(int levels){
         setCurrentLevel(currentLevel + levels);
         setXP(0);
@@ -157,17 +147,6 @@ public class Pokemon implements Evolution {
 
     }
 
-
-    public void basicAttack(Pokemon target){
-
-        double dmgMod = (100/ (100 + target.defense));
-
-        double dmg = dmgMod * this.attack;
-        target.decreaseCurrentHP(dmg);
-        target.observeHP();
-
-
-    }
 
     public void gainEnergy(){
         this.currentEnergy += this.energyGainRate;
@@ -252,7 +231,6 @@ public void getPokeStats(){
 
     public void observeHP(){
         if (currentHP <= 0){
-            System.out.println("time to die");
             isAlive = false;
             currentHP = 0;
         }
@@ -299,52 +277,6 @@ public void getPokeStats(){
     }
 
 
-    //////////////////////////////////////////////// Utility /////////////////////////////////////////////////////////
-
-    public static void rollPokemon(int size){
-        Charmander[] pokemon = new Charmander[size];
-
-
-        int legendCount= 0;
-        int epicCount= 0;
-        int rareCount= 0;
-        int uncommonCount= 0;
-        int commonCount= 0;
-
-        for (int i = 0;i < pokemon.length; i++){
-            pokemon[i] = new Charmander(100,100);
-            pokemon[i].getPokeStats();
-
-            if (pokemon[i].rarity.equals("legendary")){
-                legendCount++;
-
-            }
-
-            if (pokemon[i].rarity.equals("epic")){
-                epicCount++;
-            }
-            if (pokemon[i].rarity.equals("rare")){
-                rareCount++;
-            }
-            if (pokemon[i].rarity.equals("uncommon")){
-                uncommonCount++;
-            }
-            if (pokemon[i].rarity.equals("common")){
-                commonCount++;
-            }
-
-
-        }
-        System.out.println("Legendary: " + legendCount
-                +"\nEpic: " + epicCount
-                + "\nRare: " + rareCount
-                + "\n Uncommon: " + uncommonCount
-                + "\n Common: " + commonCount);
-
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /// Here is how i am thinking about arena
 //    for now i will try it as an object that takes in two pokemon objects
 //            and from there its a gameplay loop of pokemon attackin
@@ -361,7 +293,6 @@ public void getPokeStats(){
 
     public static void main(String[] args) {
 
-    Pokemon.rollPokemon(1);
 
     }
 
@@ -371,6 +302,14 @@ public void getPokeStats(){
         System.out.println("This pokemon does not have an evolution.");
         return null;
     }
-
+   public void basicAtk1(Pokemon target){
+       double dmg = DamageCalculators.calculateBasicAtkDamage(attack,weight);
+       double dmgMod = (100/ (100 + target.defense));
+       dmg = dmgMod * dmg;
+       target.decreaseCurrentHP(dmg);
+       target.observeHP();
+   }
+    public abstract void spAtk1(Pokemon target);
+    public abstract void spAtk2(Pokemon target);
 
 }

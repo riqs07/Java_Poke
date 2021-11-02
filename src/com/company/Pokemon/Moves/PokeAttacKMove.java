@@ -1,11 +1,13 @@
 package com.company.Pokemon.Moves;
 
+import com.company.Pokemon.Types.PokemonType;
+
 public class PokeAttacKMove {
 
-    String name;
-    double base_dmg;
-    int energyCost;
-    double accuracy;
+    public String name;
+    public double base_dmg;
+    public int energyCost;
+    public double accuracy;
 
     public PokeAttacKMove(String name,double base_dmg,int energyCost,double accuracy){
         this.name = name;

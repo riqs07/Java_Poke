@@ -34,7 +34,7 @@ public class Arena {
             String move = sc.nextLine();
 
             if (move.equalsIgnoreCase("atk")){
-                user.basicAttack(enemy);
+                user.basicAtk1(enemy);
             }
             if (move.equalsIgnoreCase("pass") || move.isEmpty()){
                 user.gainEnergy();
@@ -55,7 +55,7 @@ public class Arena {
         }
 
         if (!currentlyYourTurn){
-            enemy.basicAttack(user);
+            enemy.basicAtk1(user);
         }
 
 
@@ -81,7 +81,7 @@ public class Arena {
                     String move = sc.nextLine();
 
                     if (move.equalsIgnoreCase("atk")) {
-                        user.basicAttack(currentEnemy);
+                        user.basicAtk1(currentEnemy);
                     }
                     if (move.equalsIgnoreCase("pass") || move.isEmpty()) {
                         user.gainEnergy();
@@ -102,7 +102,7 @@ public class Arena {
                 }
 
                 if (!currentlyYourTurn) {
-                    currentEnemy.basicAttack(user);
+                    currentEnemy.basicAtk1(user);
                 }
 
 

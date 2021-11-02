@@ -10,8 +10,8 @@ public interface FireType {
     double DEFModifier = 0.9;
     double SpDEFModifier = 0.8;
 
-    PokemonType[] weakAgainst = {PokemonType.WATER,PokemonType.GROUND};
-    PokemonType[] strongAgainst = {PokemonType.ICE,PokemonType.GRASS};
+     PokemonType[] weakAgainst = {PokemonType.WATER,PokemonType.GROUND};
+     PokemonType[] strongAgainst = {PokemonType.ICE,PokemonType.GRASS};
 
 
 
@@ -21,9 +21,16 @@ public interface FireType {
 
     }
 
-     static PokeAttacKMove pound(double ATK) {
-        double dmg = 50 * (.4 * ATK);
-        return new PokeAttacKMove("Pound",dmg,1,.80);
+    static PokeAttacKMove firePunch(double spAtk) {
+        double dmg = 150 + (.8 * spAtk + 50);
+        return new PokeAttacKMove("Flamethrower",dmg,4,.80);
     }
+
+    static PokeAttacKMove ember(double spAtk) {
+        double dmg = 75 + (.2 * spAtk);
+        return new PokeAttacKMove("Ember",dmg,4,.80);
+
+    }
+
 
 }

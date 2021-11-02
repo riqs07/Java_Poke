@@ -68,4 +68,14 @@ public class Pikachu extends Pokemon implements ElectricType {
 
     }
 
+    @Override
+    public void spAtk1(Pokemon target) {
+
+    }
+
+    @Override
+    public void spAtk2(Pokemon target) {
+
+    }
+
 }

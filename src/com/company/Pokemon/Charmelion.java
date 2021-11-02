@@ -1,6 +1,7 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
+import com.company.Pokemon.Moves.PokeAttacKMove;
 import com.company.Pokemon.Types.FireType;
 
 public class Charmelion extends Pokemon implements Evolution, FireType {
@@ -98,7 +99,38 @@ public class Charmelion extends Pokemon implements Evolution, FireType {
         return new Charizard(this);
     }
 
+    @Override
+    public void basicAtk1(Pokemon target) {
 
+    }
+
+    @Override
+    public void spAtk1(Pokemon target) {
+        PokeAttacKMove spAtkMove = FireType.firePunch(specialAttack);
+
+        double dmg = spAtkMove.base_dmg;
+        double typeDMGMOD;
+
+        double dmgMod = (100/ (100 + target.specialDefense));
+
+        dmg = dmgMod * dmg;
+        target.decreaseCurrentHP(dmg);
+        target.observeHP();
+    }
+
+    @Override
+    public void spAtk2(Pokemon target) {
+        PokeAttacKMove spAtkMove = FireType.flamethrower(specialAttack);
+
+        double dmg = spAtkMove.base_dmg;
+        double typeDMGMOD;
+
+        double dmgMod = (100/ (100 + target.specialDefense));
+
+        dmg = dmgMod * dmg;
+        target.decreaseCurrentHP(dmg);
+        target.observeHP();
+    }
 
 
 // copy all poke stats
