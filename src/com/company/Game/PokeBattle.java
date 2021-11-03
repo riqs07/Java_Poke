@@ -42,12 +42,12 @@ public class PokeBattle {
 //                    }
 //                    System.out.println("1.Physical Attack\t" + s);
                     System.out.println("1.Basic Atk\t2.SpAtk1\\t3.SpAtk2");
-                    p.basicAtk1(target);
+                    p.executeBasicAtk(target);
                 }
                 if (move.equalsIgnoreCase("pass") || move.isEmpty()) {
                     p.gainEnergy();
                 } if (move.equalsIgnoreCase("pokemon") ){
-                    p.spAtk1(target);
+                    p.executeBasicAtk(target);
                 }
                 if (move.equalsIgnoreCase("flee")) {
 
@@ -59,7 +59,7 @@ public class PokeBattle {
             }
 
             if (!currentlyYourTurn) {
-                target.basicAtk1(p);
+                target.executeBasicAtk(p);
             }
 
             handleUpdateTurn(poke);

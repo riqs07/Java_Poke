@@ -61,15 +61,6 @@ public class Charizard extends Pokemon implements FireType {
         currentHP = this.maxHP;
     }
 
-    @Override
-    public void spAtk1(Pokemon target) {
-
-    }
-
-    @Override
-    public void spAtk2(Pokemon target) {
-
-    }
 
 
     //Evolution Construcotr

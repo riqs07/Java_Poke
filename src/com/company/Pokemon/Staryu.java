@@ -103,18 +103,5 @@ public class Staryu extends Pokemon implements Evolution, WaterType {
         return new Starmie(this);
     }
 
-    @Override
-    public void basicAtk1(Pokemon target) {
 
-    }
-
-    @Override
-    public void spAtk1(Pokemon target) {
-
-    }
-
-    @Override
-    public void spAtk2(Pokemon target) {
-
-    }
 }

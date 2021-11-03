@@ -4,6 +4,8 @@ import com.company.Game.GameCalculators;
 import com.company.Pokemon.Moves.PokeAttacKMove;
 import com.company.Pokemon.Types.FireType;
 
+import java.util.Random;
+
 public class Charmelion extends Pokemon implements Evolution, FireType {
     final double HEIGHT_MULTIPLIER = 1.3;
 
@@ -63,6 +65,11 @@ public class Charmelion extends Pokemon implements Evolution, FireType {
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
         currentHP = this.maxHP;
+
+
+        currentMoves.add(FireType.flamethrower(specialAttack));
+        currentMoves.add(FireType.firePunch(specialAttack));
+
     }
 
 
@@ -76,7 +83,7 @@ public class Charmelion extends Pokemon implements Evolution, FireType {
         currentLevel = poke.currentLevel;
         evolveLevel = 8;
         energyGainRate = poke.energyGainRate;
-
+// Check see how move set is affected by eveolutjiobn
 
         // STATS will change cuz of evolve need forumlas
         this.height = poke.height;
@@ -99,38 +106,8 @@ public class Charmelion extends Pokemon implements Evolution, FireType {
         return new Charizard(this);
     }
 
-    @Override
-    public void basicAtk1(Pokemon target) {
 
-    }
 
-    @Override
-    public void spAtk1(Pokemon target) {
-        PokeAttacKMove spAtkMove = FireType.firePunch(specialAttack);
-
-        double dmg = spAtkMove.base_dmg;
-        double typeDMGMOD;
-
-        double dmgMod = (100/ (100 + target.specialDefense));
-
-        dmg = dmgMod * dmg;
-        target.decreaseCurrentHP(dmg);
-        target.observeHP();
-    }
-
-    @Override
-    public void spAtk2(Pokemon target) {
-        PokeAttacKMove spAtkMove = FireType.flamethrower(specialAttack);
-
-        double dmg = spAtkMove.base_dmg;
-        double typeDMGMOD;
-
-        double dmgMod = (100/ (100 + target.specialDefense));
-
-        dmg = dmgMod * dmg;
-        target.decreaseCurrentHP(dmg);
-        target.observeHP();
-    }
 
 
 // copy all poke stats

@@ -20,7 +20,6 @@ public class Arena {
     Scanner sc = new Scanner(System.in);
 
     public Arena(Pokemon user, Pokemon enemy) {
-        boolean canFlee = rng.canFlee(user.scenarioLuck);
 
 
         final Pokemon[] pokemon = {user, enemy};
@@ -34,17 +33,14 @@ public class Arena {
             String move = sc.nextLine();
 
             if (move.equalsIgnoreCase("atk")){
-                user.basicAtk1(enemy);
+                user.executeBasicAtk(enemy);
             }
             if (move.equalsIgnoreCase("pass") || move.isEmpty()){
                 user.gainEnergy();
             }
             if (move.equalsIgnoreCase("flee")){
-                if (!canFlee){
-                    System.out.println("You cannot flee this battle!");
-                    continue;
-                }
-                isFighting = false;
+
+                continue;
 
             }
 //            if (move == 2){
@@ -55,7 +51,7 @@ public class Arena {
         }
 
         if (!currentlyYourTurn){
-            enemy.basicAtk1(user);
+            enemy.executeBasicAtk(user);
         }
 
 
@@ -81,7 +77,7 @@ public class Arena {
                     String move = sc.nextLine();
 
                     if (move.equalsIgnoreCase("atk")) {
-                        user.basicAtk1(currentEnemy);
+                        user.executeBasicAtk(currentEnemy);
                     }
                     if (move.equalsIgnoreCase("pass") || move.isEmpty()) {
                         user.gainEnergy();
@@ -102,7 +98,7 @@ public class Arena {
                 }
 
                 if (!currentlyYourTurn) {
-                    currentEnemy.basicAtk1(user);
+                    currentEnemy.executeBasicAtk(user);
                 }
 
 

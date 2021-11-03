@@ -1,12 +1,12 @@
 package com.company.Pokemon;
 
-import com.company.Game.DamageCalculators;
-import com.company.Move;
-import com.company.Moves;
+import com.company.Game.BattleCalculators;
 import com.company.Pokemon.Moves.PokeAttacKMove;
+import com.company.Pokemon.Types.BattleTypes;
 import com.company.Pokemon.Types.PokemonType;
 
-import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -42,7 +42,7 @@ public abstract class Pokemon implements Evolution {
     public double currentEnergy = 0;
    public  double maxEnergy;
    public  double energyGainRate;
-    PokemonType attributeType;
+    public  PokemonType attributeType;
 
     public int skillLuck;
     public int geneticLuck;
@@ -53,6 +53,9 @@ public abstract class Pokemon implements Evolution {
    public  boolean isAlive = true;
 
     String[] resistances;
+
+    List<PokeAttacKMove> currentMoves = new ArrayList<>();
+
 
     public Pokemon(){
         //As soon as pokemon object is mad This pokemon blueprint function is ran
@@ -132,9 +135,8 @@ public abstract class Pokemon implements Evolution {
     }
     public void decreaseCurrentHP(double amount) {
         this.currentHP -= amount;
-        if (0 > currentHP){
-            currentHP = 0;
-        }
+        checkIfDead();
+
     }
 
     public void levelUP(int levels){
@@ -229,7 +231,7 @@ public void getPokeStats(){
         }
     }
 
-    public void observeHP(){
+    public void checkIfDead(){
         if (currentHP <= 0){
             isAlive = false;
             currentHP = 0;
@@ -277,39 +279,40 @@ public void getPokeStats(){
     }
 
 
-/// Here is how i am thinking about arena
-//    for now i will try it as an object that takes in two pokemon objects
-//            and from there its a gameplay loop of pokemon attackin
-//            ideally i want cpu to analyze the damage of all its moves and just use that
-//            will also somehow need to implent like a mana bar or something to regulate which move
-//            the enemy pokemon uses other wise its always just going to use its most damaging move
-//
-//            can let user poke auto battle or can user control
-//
-//            im thinking i can send in the 2 objects and then like re write them idk
-//            i feel like thats the OO way to go about it and not the functinos
-
-
-
-    public static void main(String[] args) {
-
-
-    }
-
-
     @Override
     public Pokemon evolve() {
         System.out.println("This pokemon does not have an evolution.");
         return null;
     }
-   public void basicAtk1(Pokemon target){
-       double dmg = DamageCalculators.calculateBasicAtkDamage(attack,weight);
-       double dmgMod = (100/ (100 + target.defense));
-       dmg = dmgMod * dmg;
-       target.decreaseCurrentHP(dmg);
-       target.observeHP();
-   }
-    public abstract void spAtk1(Pokemon target);
-    public abstract void spAtk2(Pokemon target);
+
+
+    public void attack(Pokemon target, int moveIndex){
+        PokeAttacKMove selectedMove = currentMoves.get(moveIndex);
+        boolean willMiss = BattleCalculators.determineMiss(selectedMove.accuracy);
+
+
+        if (!willMiss){
+            double dmg = BattleCalculators.calculateAttackDamage(target,selectedMove);
+            target.decreaseCurrentHP(dmg);
+        }
+
+
+    }
+
+
+
+
+
+    public void determineAttack(Pokemon target) {
+    // Loop thru current moves array
+        // which ever has highest dmg possiblity do that
+        // if there is enough energy
+
+    }
+
+
+
+
 
 }
+

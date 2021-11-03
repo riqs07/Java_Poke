@@ -1,8 +1,6 @@
 package com.company.Pokemon;
 
-import com.company.Game.DamageCalculators;
 import com.company.Game.GameCalculators;
-import com.company.Pokemon.Moves.PokeAttacKMove;
 import com.company.Pokemon.Types.FireType;
 import com.company.Pokemon.Types.PokemonType;
 
@@ -103,6 +101,7 @@ public class Charmander extends Pokemon implements FireType, Evolution {
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
         currentHP = this.maxHP;
+        currentMoves.add(FireType.ember(specialAttack));
 
 
     }
@@ -118,23 +117,5 @@ public class Charmander extends Pokemon implements FireType, Evolution {
 
 
 
-    @Override
-    public void spAtk1(Pokemon target) {
 
-        PokeAttacKMove spAtkMove = FireType.ember(specialAttack);
-
-        double dmg = spAtkMove.base_dmg;
-        double typeDMGMOD;
-
-        double dmgMod = (100/ (100 + target.specialDefense));
-
-        dmg = dmgMod * dmg;
-        target.decreaseCurrentHP(dmg);
-        target.observeHP();
-    }
-
-    @Override
-    public void spAtk2(Pokemon target) {
-
-    }
 }

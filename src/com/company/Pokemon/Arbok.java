@@ -92,34 +92,8 @@ public class Arbok extends Pokemon implements FireType {
 
     }
 
-    @Override
-    public void spAtk1(Pokemon target) {
-
-    }
-
-    @Override
-    public void spAtk2(Pokemon target) {
-
-    }
 
 
-    public void useSpecialAtack(Pokemon target){
-        System.out.println(target.specialDefense);
-        if (currentEnergy < 2){
-            System.out.println("Not enough Energy. Basic Atk instead");
-        }
-        if (currentEnergy >= 2 && currentEnergy < 4){
-            System.out.println("Specual attack 1");
-        }
-
-        if (currentEnergy > 4){
-            System.out.println("mega special atk");
-        }
-
-
-
-
-    }
 
 
 }

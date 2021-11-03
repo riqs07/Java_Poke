@@ -1,6 +1,7 @@
 package com.company.Game;
 
 import com.company.Pokemon.Charmander;
+import com.company.Pokemon.Pokemon;
 
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -249,5 +250,11 @@ public class GameCalculators {
                 + "\n Uncommon: " + uncommonCount
                 + "\n Common: " + commonCount);
 
+    }
+
+
+
+    public static void main(String[] args) {
+        GameCalculators.rollPokemon(2);
     }
 }

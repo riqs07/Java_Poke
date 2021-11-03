@@ -10,11 +10,5 @@ public class RNG {
 
     }
 
-    public static boolean canFlee(int luck){
 
-        if (luck < 500){
-            return false;
-        }
-        return true;
-    }
 }
