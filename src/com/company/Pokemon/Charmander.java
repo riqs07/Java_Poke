@@ -1,10 +1,12 @@
 package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
+import com.company.Pokemon.Moves.PokeMoves;
+import com.company.Pokemon.Types.MoveTypes;
 import com.company.Pokemon.Types.FireType;
 import com.company.Pokemon.Types.PokemonType;
 
-public class Charmander extends Pokemon implements FireType, Evolution {
+public class Charmander extends Pokemon implements  FireType, Evolution {
 
     final private int HEIGHT_MIN = 18;
     final private int HEIGHT_AVG = 24;
@@ -69,7 +71,8 @@ public class Charmander extends Pokemon implements FireType, Evolution {
         currentHP = this.maxHP;
 
 
-
+        currentMoves.add(PokeMoves.ember(specialAttack));
+        currentMoves.add(PokeMoves.tackle(attack));
 
     }
 
@@ -101,7 +104,7 @@ public class Charmander extends Pokemon implements FireType, Evolution {
         this.speed = GameCalculators.calculatePokeSpeed(SPEED_MIN,SPEED_MAX,this.geneticLuck);
 
         currentHP = this.maxHP;
-        currentMoves.add(FireType.ember(specialAttack));
+        currentMoves.add(PokeMoves.ember(specialAttack));
 
 
     }

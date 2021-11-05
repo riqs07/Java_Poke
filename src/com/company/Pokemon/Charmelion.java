@@ -2,11 +2,12 @@ package com.company.Pokemon;
 
 import com.company.Game.GameCalculators;
 import com.company.Pokemon.Moves.PokeAttacKMove;
+import com.company.Pokemon.Moves.PokeMoves;
 import com.company.Pokemon.Types.FireType;
 
 import java.util.Random;
 
-public class Charmelion extends Pokemon implements Evolution, FireType {
+public class Charmelion extends Pokemon implements FireType {
     final double HEIGHT_MULTIPLIER = 1.3;
 
 
@@ -67,8 +68,9 @@ public class Charmelion extends Pokemon implements Evolution, FireType {
         currentHP = this.maxHP;
 
 
-        currentMoves.add(FireType.flamethrower(specialAttack));
-        currentMoves.add(FireType.firePunch(specialAttack));
+        currentMoves.add(PokeMoves.flamethrower(specialAttack));
+        currentMoves.add(PokeMoves.firePunch(specialAttack));
+        currentMoves.add(PokeMoves.ember(specialAttack));
 
     }
 

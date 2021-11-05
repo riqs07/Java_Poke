@@ -2,7 +2,7 @@ package com.company.Pokemon;
 
 import com.company.Game.BattleCalculators;
 import com.company.Pokemon.Moves.PokeAttacKMove;
-import com.company.Pokemon.Types.BattleTypes;
+import com.company.Pokemon.Types.MoveTypes;
 import com.company.Pokemon.Types.PokemonType;
 
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public abstract class Pokemon implements Evolution {
 
     String[] resistances;
 
-    List<PokeAttacKMove> currentMoves = new ArrayList<>();
+   public List<PokeAttacKMove> currentMoves = new ArrayList<>();
 
 
     public Pokemon(){
@@ -279,6 +279,11 @@ public void getPokeStats(){
     }
 
 
+    public void useItem(Pokemon target){
+
+    }
+
+
     @Override
     public Pokemon evolve() {
         System.out.println("This pokemon does not have an evolution.");
@@ -288,27 +293,21 @@ public void getPokeStats(){
 
     public void attack(Pokemon target, int moveIndex){
         PokeAttacKMove selectedMove = currentMoves.get(moveIndex);
+
         boolean willMiss = BattleCalculators.determineMiss(selectedMove.accuracy);
 
 
         if (!willMiss){
             double dmg = BattleCalculators.calculateAttackDamage(target,selectedMove);
+            System.out.println(name + " used " + currentMoves.get(moveIndex).name +" it dealt " + (int) dmg + " damage");
             target.decreaseCurrentHP(dmg);
         }
 
+        System.out.println(name + " Missed");
 
     }
 
 
-
-
-
-    public void determineAttack(Pokemon target) {
-    // Loop thru current moves array
-        // which ever has highest dmg possiblity do that
-        // if there is enough energy
-
-    }
 
 
 

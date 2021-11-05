@@ -2,7 +2,7 @@ package com.company.Pokemon.Types;
 
 import com.company.Pokemon.Moves.PokeAttacKMove;
 
-public interface FireType extends BattleTypes {
+public interface FireType {
 
     double SpATKModifier = 1.4;
     double HPModifier = 1.2;
@@ -15,22 +15,6 @@ public interface FireType extends BattleTypes {
 
 
 
-     static PokeAttacKMove flamethrower(double spAtk) {
-        double dmg = 150 + (.8 * spAtk);
-        return new PokeAttacKMove("Flamethrower",dmg,4,.80,PokemonType.FIRE,MoveTypes.SPECIAL);
-
-    }
-
-    static PokeAttacKMove firePunch(double spAtk) {
-        double dmg = 150 + (.8 * spAtk + 50);
-        return new PokeAttacKMove("Flamethrower",dmg,4,.80,PokemonType.FIRE,MoveTypes.SPECIAL);
-    }
-
-    static PokeAttacKMove ember(double spAtk) {
-        double dmg = 75 + (.2 * spAtk);
-        return new PokeAttacKMove("Ember",dmg,4,.80,PokemonType.FIRE,MoveTypes.SPECIAL);
-
-    }
 
 
 }

@@ -1,7 +1,9 @@
 package com.company.Game;
 
+import com.company.Pokemon.Moves.PokeAttacKMove;
 import com.company.Pokemon.Pokemon;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PokeBattle {
@@ -14,42 +16,50 @@ public class PokeBattle {
 
     public PokeBattle(Pokemon p,Pokemon target) {
 
+        System.out.println("----- Battle Start ---- Prepare for Combat with enemy " + target.name);
 
         p.showQuickStats();
         target.showQuickStats();
         userHP = p.currentHP;
         enemyHP = target.currentHP;
-        Pokemon[] poke = {p,target};
-
-        currentlyYourTurn = determineFirstTurn(p.speed, target.speed);
+        Pokemon[] participants = {p,target};
+        int moveIndex ;
+        currentlyYourTurn = BattleCalculators.determineFirstTurn(p.speed, target.speed);
 
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("----- Battle Start ---- Prepare for Combat with " + target.name);
 
         while (isFighting) {
 
             if (currentlyYourTurn) {
                 System.out.println("1.Fight\t2.Items\t3.Pokemon\t4.Pass\t5.Flee");
 
-                String move = sc.nextLine();
+                String action = sc.nextLine();
 
-                if (move.equalsIgnoreCase("Fight")) {
-//                    String s="";
-//
-//                    for (int i = 0;i <p.currentMoves.length;i++){
-//                        s += i+2 + "." + p.currentMoves[i].name;
-//                    }
-//                    System.out.println("1.Physical Attack\t" + s);
-                    System.out.println("1.Basic Atk\t2.SpAtk1\\t3.SpAtk2");
-                    p.executeBasicAtk(target);
+
+                if (action.equalsIgnoreCase("Fight")) {
+                    PokeAttacKMove[] moves = new PokeAttacKMove[p.currentMoves.size()];
+                    moves = p.currentMoves.toArray(moves);
+                    String allNames = "";
+
+
+                    for (int i=0;i <moves.length;i++){
+                        allNames += i+1 +"." + moves[i].name + "\t";
+
+                    }
+                    System.out.println(allNames);
+                    System.out.println("Enter Attack move #..");
+                    moveIndex = sc.nextInt() - 1;
+
+
+                    p.attack(target,moveIndex);
+
                 }
-                if (move.equalsIgnoreCase("pass") || move.isEmpty()) {
+                if (action.equalsIgnoreCase("pass") || action.isEmpty()) {
                     p.gainEnergy();
-                } if (move.equalsIgnoreCase("pokemon") ){
-                    p.executeBasicAtk(target);
+                } if (action.equalsIgnoreCase("pokemon") ){
+                    System.out.println("SHow list of Current POkemon names");
                 }
-                if (move.equalsIgnoreCase("flee")) {
+                if (action.equalsIgnoreCase("flee")) {
 
                     isFighting = false;
 
@@ -59,18 +69,15 @@ public class PokeBattle {
             }
 
             if (!currentlyYourTurn) {
-                target.executeBasicAtk(p);
+//                int pokeLogic = determinePokeFightLogic();
+                target.attack(p,0);
             }
 
-            handleUpdateTurn(poke);
+            handleUpdateTurn(participants);
 
         }
     }
-    private boolean determineFirstTurn(double playerSpeed,double enemySpeed){
 
-        return playerSpeed > enemySpeed;
-
-    }
 
 
 
@@ -80,13 +87,16 @@ public class PokeBattle {
 
 
         if (userHP == 0 || enemyHP == 0) {
-            System.out.println("battle over");
+            System.out.println("Battle over!");
             isFighting = false;
 
             if (userHP > 0){
                 // user win
-
+                System.out.println("You defeated " + poke[1].name );
+            } else if (userHP <= 0){
+                System.out.println("You lost to " + poke[1].name );
             }
+
 
         }
 

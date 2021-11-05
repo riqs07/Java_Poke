@@ -39,22 +39,26 @@ class PokemonTest {
     }
 
     @Test
-    void basicAttack(){
+    void attack(){
         Pokemon target = new Charmander();
-        Pokemon origin = new Charizard();
-        boolean didDamage = false;
+        Pokemon origin = new Charmander();
 
         double startHP = target.currentHP;
 
 
-//        origin.attack(target);
+        origin.attack(target,0);
 
 
-        if (startHP > target.currentHP){
-            didDamage = true;
-        }
+
+        boolean didDamage = startHP > target.currentHP;
 
 
         assertTrue(didDamage);
     }
+
+
+
+
+
 }
+

@@ -2,7 +2,7 @@ package com.company.Game;
 
 import com.company.Pokemon.Moves.PokeAttacKMove;
 import com.company.Pokemon.Pokemon;
-import com.company.Pokemon.Types.BattleTypes;
+import com.company.Pokemon.Types.MoveTypes;
 import com.company.Pokemon.Types.PokemonType;
 
 import java.util.Random;
@@ -16,12 +16,12 @@ public class BattleCalculators {
         double dmg = 0;
 
 
-            if (selectedMove.moveType == BattleTypes.MoveTypes.PHYSICAL){
+            if (selectedMove.moveType == MoveTypes.PHYSICAL){
                 double dmgMod = (100/ (100 + target.defense));
                 return (dmgMod * base_dmg);
 
             }
-            if (selectedMove.moveType == BattleTypes.MoveTypes.SPECIAL){
+            if (selectedMove.moveType == MoveTypes.SPECIAL){
                 double dmgMod = (100/ (100 + target.specialDefense));
                 double typeDMGMOD = determineTypeDMGMod(selectedMove.type,target.attributeType);
                 return (dmgMod * base_dmg) * typeDMGMOD;
@@ -51,7 +51,11 @@ public class BattleCalculators {
     }
 
 
+    public static boolean determineFirstTurn(double playerSpeed,double enemySpeed){
 
+        return playerSpeed > enemySpeed;
+
+    }
 
 
 
@@ -80,18 +84,11 @@ public class BattleCalculators {
         Random rng = new Random();
         int roll = rng.nextInt(100);
 
-        if (roll > chance){
-            return false;
-        }
-
-        return true;
+        return roll <= chance;
     }
     public static boolean canFlee(int luck){
 
-        if (luck < 500){
-            return false;
-        }
-        return true;
+        return luck >= 500;
     }
 
 }
